@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/19 18:36:32 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/19 19:05:08 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ void pixel(t_data *data)
         mlx_destroy_image(data->mlx, data->img);
     data->img = mlx_new_image(data->mlx, data->width, data->height);
     data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
-    x = 0;
-    while(x < MAP_SIZE)
+    y = 0;
+    while(y < MAP_SIZE)
     {
-        y = 0;
-        while(y < MAP_SIZE)
+        x = 0;
+        while(x < MAP_SIZE)
         {
             if (map[y][x] == '1')
                 original_color = colorg;
@@ -107,9 +107,9 @@ void pixel(t_data *data)
                 }
                 i++;
             }
-            y++;
+            x++;
         }
-        x++;
+        y++;
     }
 }
 
