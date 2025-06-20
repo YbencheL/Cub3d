@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/19 19:05:08 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:30:27 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void charachter(t_data *data)
     int center_y = 450 + data->offset_y;
     int x;
     int y;
-    int j = -rad;
+    int j;
     int i = -rad;
 
     while(i < rad)
@@ -53,25 +53,20 @@ void pixel(t_data *data)
 {
     int i = 0, j = 0;
     int x, y;
-    int tile_size = 100;
     int start_x;
     int start_y;
     int color;
     int original_color;
-    int colors = 0xF0EAD6;
-    int colora = 0x000000;
-    int colorg = 0x808080;
+
     char *map[MAP_SIZE] = {
-    "1111111111",
-    "1000000001",
-    "1011111101",
-    "1000000001",
-    "1111011111",
-    "1000000001",
-    "1000001001",
-    "1010001001",
-    "1100001001",
-    "1111111111"
+    "11111111",
+    "10100001",
+    "10000101",
+    "10000101",
+    "10000001",
+    "10001111",
+    "11000001",
+    "11111111",
     };
 
 
@@ -86,21 +81,21 @@ void pixel(t_data *data)
         while(x < MAP_SIZE)
         {
             if (map[y][x] == '1')
-                original_color = colorg;
+                original_color = data->colorg;
             else
-                original_color = colors;
+                original_color = data->colors;
             i = 0;
-            while(i < tile_size)
+            while(i < data->tile_size)
             {
                 j = 0;
-                while(j < tile_size)
+                while(j < data->tile_size)
                 {
                     color = original_color;
-                    if ((i == 1 || i == 0) || (i == tile_size - 2 || i == tile_size - 1)
-                        || (j == 1 || j == 0) || (j == tile_size - 2 || j ==  tile_size - 1))
-                        color = colora;
-                    start_x = x * tile_size + j;
-                    start_y = y * tile_size + i;
+                    if ((i == 1 || i == 0) || (i == data->tile_size - 2 || i == data->tile_size - 1)
+                        || (j == 1 || j == 0) || (j == data->tile_size - 2 || j ==  data->tile_size - 1))
+                        color = data->colora;
+                    start_x = x * data->tile_size + j;
+                    start_y = y * data->tile_size + i;
                     if (start_x < data->width && start_y < data->height)
                         my_mlx_pixel_put(data, start_x, start_y, color);
                     j++;
@@ -121,8 +116,12 @@ int main()
     
     data->img = NULL;
     data->addr = NULL;
-    data->height = 1000;
-    data->width = 1000;
+    data->colors = 0xF0EAD6;
+    data->colora = 0x000000;
+    data->colorg = 0x808080;
+    data->tile_size = 100;
+    data->height = 800;
+    data->width = 800;
     data->offset_x = 0;
     data->offset_y = 0;
     

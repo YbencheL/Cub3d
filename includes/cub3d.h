@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/19 18:27:54 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:29:59 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define MAP_SIZE 10
+#define MAP_SIZE 8
 
 #include "../minilibx-linux/mlx.h"
 #include <stdio.h>
@@ -30,6 +30,10 @@ typedef struct s_data
     int sizel;
     int offset_x;
     int offset_y;
+    int colors;
+    int colora;
+    int colorg;
+    int tile_size;
 } t_data;
 
 //------------------features----------------------
