@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/20 16:30:27 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/21 11:34:00 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 void charachter(t_data *data)
 {
     int rad = 30;
-    int center_x = 450 + data->offset_x;
-    int center_y = 450 + data->offset_y;
+    int center_x = (int)(data->player->posx * data->tile_size);
+    int center_y = (int)(data->player->posy * data->tile_size);
     int x;
     int y;
     int j;
@@ -41,7 +41,9 @@ void charachter(t_data *data)
                 y = center_y + j;
                 if (x >= 0 && x < data->width && 
                     y >= 0 && y < data->height)
+                {
                     my_mlx_pixel_put(data, x, y, 0x00C000);
+                }
             }
             j++;
         }
@@ -49,7 +51,27 @@ void charachter(t_data *data)
     }
 }
 
-void pixel(t_data *data)
+void player_pos(t_player *player, char **map)
+{
+    int y = 0,x;
+    while(y < MAP_SIZE)
+    {
+        x = 0;
+        while(x < MAP_SIZE)
+        {
+            if (map[y][x] == 'P')
+            {                        
+                player->posx = (double)x + 0.5;
+                player->posy = (double)y + 0.5;
+                return;
+            }
+            x++;
+        }
+        y++;
+    }
+}
+
+void pixel(t_data *data, char **map)
 {
     int i = 0, j = 0;
     int x, y;
@@ -58,20 +80,9 @@ void pixel(t_data *data)
     int color;
     int original_color;
 
-    char *map[MAP_SIZE] = {
-    "11111111",
-    "10100001",
-    "10000101",
-    "10000101",
-    "10000001",
-    "10001111",
-    "11000001",
-    "11111111",
-    };
-
-
     if (data->img)
         mlx_destroy_image(data->mlx, data->img);
+        
     data->img = mlx_new_image(data->mlx, data->width, data->height);
     data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
     y = 0;
@@ -111,9 +122,25 @@ void pixel(t_data *data)
 int main()
 {
     t_data *data;
+    t_player *player;
     
+    char *map[MAP_SIZE] = {
+    "11111111",
+    "10100001",
+    "10000101",
+    "10000101",
+    "10000001",
+    "10001111",
+    "110P0001",
+    "11111111",
+    };
+
     data = malloc(sizeof(t_data));
-    
+    player = malloc(sizeof(t_player));
+    player->posx = 0.0;
+    player->posy = 0.0;
+    data->map = map;
+    data->player = player;
     data->img = NULL;
     data->addr = NULL;
     data->colors = 0xF0EAD6;
@@ -128,8 +155,8 @@ int main()
     data->mlx = mlx_init();
     
     data->win = mlx_new_window(data->mlx, data->height, data->width, "qub3d");
-
-    pixel(data);
+    player_pos(player, map);
+    pixel(data, data->map);
     charachter(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     setup_h(data);

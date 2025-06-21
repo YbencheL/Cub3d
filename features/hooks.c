@@ -6,13 +6,26 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/19 18:36:38 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/21 11:35:43 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int close_program(t_data *data)
+static void redraw(t_data *data)
+{
+    if (data->img)
+        mlx_destroy_image(data->mlx, data->img);
+    
+    data->img = mlx_new_image(data->mlx, data->width, data->height);
+    data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
+    
+    pixel(data, data->map);
+    charachter(data);
+    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+}
+
+int close_program(t_data *data, t_player *player)
 {
     if (data->img)
         mlx_destroy_image(data->mlx, data->img);
@@ -24,27 +37,43 @@ int close_program(t_data *data)
         free(data->mlx);
     }
     free(data);
+    free(player);
     exit(0);
     return (0);
 }
 
+void move_player(t_player *player, double dx, double dy, char **map)
+{
+    double new_x = player->posx + dx;
+    double new_y = player->posy + dy;
+    
+    int map_x = (int)new_x;
+    int map_y = (int)new_y;
+    
+    if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
+        map[map_y][map_x] != '1') {
+        player->posx = new_x;
+        player->posy = new_y;
+    }
+}
+
 int key_hook(int keycode, t_data *data)
 {
-    int shift_amount = 2;
+    double move_amount = 0.1;
     
     if (keycode == 65307)
-        close_program(data);
+        close_program(data, data->player);
     else if (keycode == 65361)
-		data->offset_x -= shift_amount;
-	else if (keycode == 65362)
-		data->offset_y -= shift_amount;
-	else if (keycode == 65363)
-		data->offset_x += shift_amount;
-	else if (keycode == 65364)
-		data->offset_y += shift_amount;
-    pixel(data);
-    charachter(data);
-    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+        move_player(data->player, -move_amount, 0, data->map);
+    else if (keycode == 65362)
+        move_player(data->player, 0, -move_amount, data->map);
+    else if (keycode == 65363)
+        move_player(data->player, move_amount, 0, data->map);
+    else if (keycode == 65364)
+        move_player(data->player, 0, move_amount, data->map);
+    
+    redraw(data);
+        
     return 0;
 }
 
