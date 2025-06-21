@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/21 11:34:00 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:09:24 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
+// void raycast(t_data *data, int center_x, int center_y)
+// {
+
+// }
+
 void charachter(t_data *data)
 {
-    int rad = 30;
+    int rad = 10;
     int center_x = (int)(data->player->posx * data->tile_size);
     int center_y = (int)(data->player->posy * data->tile_size);
     int x;
@@ -35,10 +40,10 @@ void charachter(t_data *data)
         j = -rad;
         while(j < rad)
         {
+            x = center_x + i;
+            y = center_y + j;
             if (i*i + j*j <= rad*rad)
             {
-                x = center_x + i;
-                y = center_y + j;
                 if (x >= 0 && x < data->width && 
                     y >= 0 && y < data->height)
                 {
@@ -49,6 +54,7 @@ void charachter(t_data *data)
         }
         i++;
     }
+    // raycast(data, center_x, center_y);
 }
 
 void player_pos(t_player *player, char **map)
@@ -60,7 +66,7 @@ void player_pos(t_player *player, char **map)
         while(x < MAP_SIZE)
         {
             if (map[y][x] == 'P')
-            {                        
+            {
                 player->posx = (double)x + 0.5;
                 player->posy = (double)y + 0.5;
                 return;

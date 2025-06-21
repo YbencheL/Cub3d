@@ -6,25 +6,23 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/21 11:35:25 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:09:35 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define MAP_SIZE 8
+#define LINE_LENGTH 8
 
 #include "../minilibx-linux/mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
 
 typedef struct s_player
 {
     double posx;
     double posy;
-    double dirx;
-    double diry;
-    double planx;
-    double plany;
 } t_player;
 
 typedef struct s_data

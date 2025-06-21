@@ -6,13 +6,13 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/21 11:35:43 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/21 14:08:56 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void redraw(t_data *data)
+int redraw(t_data *data)
 {
     if (data->img)
         mlx_destroy_image(data->mlx, data->img);
@@ -23,6 +23,7 @@ static void redraw(t_data *data)
     pixel(data, data->map);
     charachter(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+    return 0;
 }
 
 int close_program(t_data *data, t_player *player)
@@ -60,15 +61,19 @@ void move_player(t_player *player, double dx, double dy, char **map)
 int key_hook(int keycode, t_data *data)
 {
     double move_amount = 0.1;
-    
+     
     if (keycode == 65307)
         close_program(data, data->player);
     else if (keycode == 65361)
-        move_player(data->player, -move_amount, 0, data->map);
+    {
+        //
+    }
     else if (keycode == 65362)
         move_player(data->player, 0, -move_amount, data->map);
     else if (keycode == 65363)
-        move_player(data->player, move_amount, 0, data->map);
+    {
+        //
+    }
     else if (keycode == 65364)
         move_player(data->player, 0, move_amount, data->map);
     
@@ -81,4 +86,5 @@ void setup_h(t_data *data)
 {
     mlx_hook(data->win, 17, 0, &close_program, data);
     mlx_hook(data->win, 2, 1L<<0, &key_hook, data);
+    mlx_loop_hook(data->mlx, redraw, data);
 }
