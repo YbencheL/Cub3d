@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/21 14:09:35 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/22 11:52:01 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct s_player
 typedef struct s_data
 {
     void *mlx;
-    void *win;
+    void *win1;
+    void *win2;
     void *img;
     char *addr;
     int height;

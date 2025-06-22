@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/21 14:08:56 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/22 11:57:17 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int redraw(t_data *data)
     
     pixel(data, data->map);
     charachter(data);
-    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+    mlx_put_image_to_window(data->mlx, data->win1, data->img, 0, 0);
     return 0;
 }
 
@@ -30,8 +30,10 @@ int close_program(t_data *data, t_player *player)
 {
     if (data->img)
         mlx_destroy_image(data->mlx, data->img);
-    if (data->win)
-        mlx_destroy_window(data->mlx, data->win);
+    if (data->win1)
+        mlx_destroy_window(data->mlx, data->win1);
+    if (data->win2)
+        mlx_destroy_window(data->mlx, data->win2);
     if (data->mlx)
     {
         mlx_destroy_display(data->mlx);
@@ -66,13 +68,15 @@ int key_hook(int keycode, t_data *data)
         close_program(data, data->player);
     else if (keycode == 65361)
     {
-        //
+        // this needs to be chenged later
+        move_player(data->player, -move_amount, 0, data->map);
     }
     else if (keycode == 65362)
         move_player(data->player, 0, -move_amount, data->map);
     else if (keycode == 65363)
     {
-        //
+        // this needs to be chenged later
+        move_player(data->player, move_amount, 0, data->map);
     }
     else if (keycode == 65364)
         move_player(data->player, 0, move_amount, data->map);
@@ -84,7 +88,9 @@ int key_hook(int keycode, t_data *data)
 
 void setup_h(t_data *data)
 {
-    mlx_hook(data->win, 17, 0, &close_program, data);
-    mlx_hook(data->win, 2, 1L<<0, &key_hook, data);
+    mlx_hook(data->win1, 17, 0, &close_program, data);
+    mlx_hook(data->win2, 17, 0, &close_program, data);
+    mlx_hook(data->win1, 2, 1L<<0, &key_hook, data);
+    mlx_hook(data->win2, 2, 1L<<0, &key_hook, data);
     mlx_loop_hook(data->mlx, redraw, data);
 }

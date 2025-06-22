@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/21 14:09:24 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/22 11:57:40 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,11 +160,12 @@ int main()
     
     data->mlx = mlx_init();
     
-    data->win = mlx_new_window(data->mlx, data->height, data->width, "qub3d");
+    data->win2 = mlx_new_window(data->mlx, data->height, data->width, "qub3d");
+    data->win1 = mlx_new_window(data->mlx, data->height, data->width, "qub3d mini map");
     player_pos(player, map);
     pixel(data, data->map);
     charachter(data);
-    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+    mlx_put_image_to_window(data->mlx, data->win1, data->img, 0, 0);
     setup_h(data);
     mlx_loop(data->mlx);
     
