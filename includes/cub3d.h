@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/22 11:52:01 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:03:51 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ typedef struct s_player
 {
     double posx;
     double posy;
+    double dirx;
+    double diry;
+    double planex;
+    double planey;
 } t_player;
 
 typedef struct s_data

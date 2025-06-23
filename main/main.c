@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/22 11:57:40 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:52:18 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,29 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-// void raycast(t_data *data, int center_x, int center_y)
-// {
+void casting_rays(t_data *data, int startX, int startY)
+{
+    int i = 0;
+    double x = startX;
+    double y = startY;
+    double diroffY = data->player->diry * 200;
+    double diroffX = data->player->dirx * 200;
+    double endX = x + diroffX;
+    double endY = y + diroffY;
+    double dX = endX - x;
+    double dY = endY - y;
+    int steps = fmax(fabs(dX), fabs(dY));
+    double increment_x = dX / steps;
+    double increment_y = dY / steps;
 
-// }
+    while (i < steps)
+    {
+        my_mlx_pixel_put(data, x, y, 0xFF0000);
+        x += increment_x;
+        y += increment_y;
+        i++;
+    }
+}
 
 void charachter(t_data *data)
 {
@@ -54,7 +73,7 @@ void charachter(t_data *data)
         }
         i++;
     }
-    // raycast(data, center_x, center_y);
+    casting_rays(data, center_x, center_y);
 }
 
 void player_pos(t_player *player, char **map)
@@ -145,6 +164,10 @@ int main()
     player = malloc(sizeof(t_player));
     player->posx = 0.0;
     player->posy = 0.0;
+    player->dirx = 0.0;
+    player->diry = -1.0;
+    player->planex = 0.0;
+    player->planey = 0.66;
     data->map = map;
     data->player = player;
     data->img = NULL;
