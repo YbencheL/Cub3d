@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/24 16:34:06 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:29:16 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,77 +20,34 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-// void raycasting_loop(t_data *data, t_player *player)
+// void casting_rays(t_data *data)
 // {
+//     int mapy;
+//     int mapx;
+//     double cameraX;
+//     double raydirX;
+//     double raydirY;
+//     double deltaDistX;
+//     double deltaDistY;
+//     int x = 0;
 
-// }
-
-// void casting_rays(t_data *data, int startX, int startY)
-// {
-//     int i = 0;
-//     double x = startX;
-//     double y = startY;
-//     double diroffY = data->player->diry * 200;
-//     double diroffX = data->player->dirx * 200;
-//     double endX = x + diroffX;
-//     double endY = y + diroffY;
-//     double dX = endX - x;
-//     double dY = endY - y;
-//     int steps = fmax(fabs(dX), fabs(dY));
-//     double increment_x = dX / steps;
-//     double increment_y = dY / steps;
-
-//     while (i < steps)
+//     while (x < data->width)
 //     {
-//         if (x >= 0 && x < data->width && y >= 0 && y < data->height)
-//             my_mlx_pixel_put(data, x, y, 0x00C000);
-//         x += increment_x;
-//         y += increment_y;
-//         i++;
+//         mapx = (int)data->player->posx;
+//         mapy = (int)data->player->posy;
+//         cameraX = 2 * x / (double)data->width - 1;
+//         raydirX = data->player->dirx + data->player->planex * cameraX; 
+//         raydirY = data->player->diry + data->player->planey * cameraX;
+//         deltaDistX = fabs(1 / raydirX);
+//         deltaDistY = fabs(1 / raydirY);
+//         x++;
 //     }
 // }
 
-void casting_rays(t_data *data, int start_x, int start_y)
-{
-    int column = 0;
-
-    while (column < data->width)
-    {
-        double cameraX = 2 * column / (double)data->width - 1;
-        double rayDirX = data->player->dirx + data->player->planex * cameraX;
-        double rayDirY = data->player->diry + data->player->planey * cameraX;
-
-        double rayX = start_x;
-        double rayY = start_y;
-
-        double endX = rayX + rayDirX * 10000;
-        double endY = rayY + rayDirY * 10000;
-        double dX = endX - rayX;
-        double dY = endY - rayY;
-        int steps = fmax(fabs(dX), fabs(dY));
-        double increment_x = dX / steps;
-        double increment_y = dY / steps;
-
-        int i = 0;
-        while (i < steps)
-        {
-            int mapX = (int)(rayX / data->tile_size);
-            int mapY = (int)(rayY / data->tile_size);
-
-            if (mapX < 0 || mapX >= data->width || mapY < 0 || mapY >= data->height)
-                break;
-            if (data->map[mapY][mapX] == '1')
-                break;
-
-            my_mlx_pixel_put(data, rayX, rayY, 0x00C000);
-
-            rayX += increment_x;
-            rayY += increment_y;
-            i++;
-        }
-        column++;
-    }
-}
+// void casting_rays(t_data *data)
+// {
+    
+// }
 
 void charachter(t_data *data)
 {
@@ -121,7 +78,15 @@ void charachter(t_data *data)
         }
         i++;
     }
-    casting_rays(data, center_x, center_y);
+    double step = 0.0;
+    while (step < 5.0)
+    {
+        int line_x = (int)((data->player->posx + data->player->dirx * step * 0.2) * data->tile_size);
+        int line_y = (int)((data->player->posy + data->player->diry * step * 0.2) * data->tile_size);
+        my_mlx_pixel_put(data, line_x, line_y, 0x00C000);
+        step += 0.05;
+    }
+    // casting_rays(data);
     // raycasting_loop(data, data->player);
 }
 
