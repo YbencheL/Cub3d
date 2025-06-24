@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/22 11:57:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:43:30 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,71 +26,68 @@ int redraw(t_data *data)
     return 0;
 }
 
-int close_program(t_data *data, t_player *player)
+int close_program(t_data *data)
 {
     if (data->img)
-        mlx_destroy_image(data->mlx, data->img);
+    mlx_destroy_image(data->mlx, data->img);
     if (data->win1)
-        mlx_destroy_window(data->mlx, data->win1);
-    if (data->win2)
-        mlx_destroy_window(data->mlx, data->win2);
+    mlx_destroy_window(data->mlx, data->win1);
+    // if (data->win2)
+    //     mlx_destroy_window(data->mlx, data->win2);
     if (data->mlx)
     {
         mlx_destroy_display(data->mlx);
         free(data->mlx);
     }
     free(data);
-    free(player);
+    free(data->player);
     exit(0);
     return (0);
 }
 
-void move_player(t_player *player, double dx, double dy, char **map)
+void move_player(t_data *data, double dx, double dy)
 {
-    double new_x = player->posx + dx;
-    double new_y = player->posy + dy;
-    
-    int map_x = (int)new_x;
-    int map_y = (int)new_y;
-    
-    if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
-        map[map_y][map_x] != '1') {
-        player->posx = new_x;
-        player->posy = new_y;
-    }
+    data->player->posx += dx;
+    data->player->posy += dy;
+}
+
+void rotate_player(t_data *data, double angle)
+{
+    data->player->player_a += angle;
+    if (data->player->player_a < 0)
+        data->player->player_a += 2 * M_PI;
+    else if (data->player->player_a > 2 * M_PI)
+        data->player->player_a -= 2 * M_PI;
+
+    data->player->dirx = cos(data->player->player_a);
+    data->player->diry = sin(data->player->player_a);
 }
 
 int key_hook(int keycode, t_data *data)
 {
-    double move_amount = 0.1;
-     
+    double speed = 0.1;
+
     if (keycode == 65307)
-        close_program(data, data->player);
+        close_program(data);
     else if (keycode == 65361)
-    {
-        // this needs to be chenged later
-        move_player(data->player, -move_amount, 0, data->map);
-    }
+        rotate_player(data, -0.1);
     else if (keycode == 65362)
-        move_player(data->player, 0, -move_amount, data->map);
+        move_player(data, data->player->dirx * speed, data->player->diry * speed);
     else if (keycode == 65363)
-    {
-        // this needs to be chenged later
-        move_player(data->player, move_amount, 0, data->map);
-    }
+        rotate_player(data, 0.1);
     else if (keycode == 65364)
-        move_player(data->player, 0, move_amount, data->map);
-    
+        move_player(data, -data->player->dirx * speed, -data->player->diry * speed);
+
     redraw(data);
-        
     return 0;
 }
+
 
 void setup_h(t_data *data)
 {
     mlx_hook(data->win1, 17, 0, &close_program, data);
-    mlx_hook(data->win2, 17, 0, &close_program, data);
+    // mlx_hook(data->win2, 17, 0, &close_program, data);
     mlx_hook(data->win1, 2, 1L<<0, &key_hook, data);
-    mlx_hook(data->win2, 2, 1L<<0, &key_hook, data);
+    // mlx_hook(data->win2, 2, 1L<<0, &key_hook, data);
     mlx_loop_hook(data->mlx, redraw, data);
 }

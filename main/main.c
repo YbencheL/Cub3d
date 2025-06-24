@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/23 15:52:18 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:36:36 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,38 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
+// void raycasting_loop(t_data *data, t_player *player)
+// {
+
+// }
+
 void casting_rays(t_data *data, int startX, int startY)
 {
     int i = 0;
     double x = startX;
     double y = startY;
-    double diroffY = data->player->diry * 200;
-    double diroffX = data->player->dirx * 200;
+    double diroffY = data->player->diry * data->height;
+    double diroffX = data->player->dirx * data->width;
     double endX = x + diroffX;
     double endY = y + diroffY;
     double dX = endX - x;
     double dY = endY - y;
+    int mapX;
+    int mapY;
     int steps = fmax(fabs(dX), fabs(dY));
     double increment_x = dX / steps;
     double increment_y = dY / steps;
 
     while (i < steps)
     {
-        my_mlx_pixel_put(data, x, y, 0xFF0000);
+        mapX = (int)(x / data->tile_size);
+        mapY = (int)(y / data->tile_size);
+
+        if (mapX < 0 || mapX >= data->width || mapY < 0 || mapY >= data->height)
+            break;
+        if (data->map[mapY][mapX] == '1')
+            break;
+        my_mlx_pixel_put(data, x, y, 0x00C000);
         x += increment_x;
         y += increment_y;
         i++;
@@ -74,6 +88,7 @@ void charachter(t_data *data)
         i++;
     }
     casting_rays(data, center_x, center_y);
+    // raycasting_loop(data, data->player);
 }
 
 void player_pos(t_player *player, char **map)
@@ -164,8 +179,9 @@ int main()
     player = malloc(sizeof(t_player));
     player->posx = 0.0;
     player->posy = 0.0;
-    player->dirx = 0.0;
-    player->diry = -1.0;
+    player->player_a = -M_PI / 2;
+    player->dirx = cos(player->player_a);
+    player->diry = sin(player->player_a);
     player->planex = 0.0;
     player->planey = 0.66;
     data->map = map;
@@ -183,7 +199,7 @@ int main()
     
     data->mlx = mlx_init();
     
-    data->win2 = mlx_new_window(data->mlx, data->height, data->width, "qub3d");
+    // data->win2 = mlx_new_window(data->mlx, data->height, data->width, "qub3d");
     data->win1 = mlx_new_window(data->mlx, data->height, data->width, "qub3d mini map");
     player_pos(player, map);
     pixel(data, data->map);
