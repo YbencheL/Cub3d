@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/24 14:44:05 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:02:30 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef struct s_data
 int key_hook(int keycode, t_data *data);
 void setup_h(t_data *data);
 int close_program(t_data *data);
-void move_player(t_data *data, double dx, double dy);
+// void move_player(t_data *data, double dx, double dy);
+void move_player(t_player *player, double dx, double dy, char **map);
 void rotate_player(t_data *data, double angle);
 
 //------------------main----------------------

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/24 14:43:30 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/24 16:06:18 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,26 @@ int close_program(t_data *data)
     return (0);
 }
 
-void move_player(t_data *data, double dx, double dy)
+void move_player(t_player *player, double dx, double dy, char **map)
 {
-    data->player->posx += dx;
-    data->player->posy += dy;
+    double new_x = player->posx + dx;
+    double new_y = player->posy + dy;
+    
+    int map_x = (int)new_x;
+    int map_y = (int)new_y;
+    
+    if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
+        map[map_y][map_x] != '1') {
+        player->posx += dx;
+        player->posy += dy;
+    }
 }
+
+// void move_player(t_data *data, double dx, double dy)
+// {
+//     data->player->posx += dx;
+//     data->player->posy += dy;
+// }
 
 void rotate_player(t_data *data, double angle)
 {
@@ -72,11 +87,11 @@ int key_hook(int keycode, t_data *data)
     else if (keycode == 65361)
         rotate_player(data, -0.1);
     else if (keycode == 65362)
-        move_player(data, data->player->dirx * speed, data->player->diry * speed);
+        move_player(data->player, data->player->dirx * speed, data->player->diry * speed, data->map);
     else if (keycode == 65363)
         rotate_player(data, 0.1);
     else if (keycode == 65364)
-        move_player(data, -data->player->dirx * speed, -data->player->diry * speed);
+        move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
 
     redraw(data);
     return 0;
