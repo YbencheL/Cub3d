@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/24 17:29:16 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:56:10 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,34 +20,50 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-// void casting_rays(t_data *data)
-// {
-//     int mapy;
-//     int mapx;
-//     double cameraX;
-//     double raydirX;
-//     double raydirY;
-//     double deltaDistX;
-//     double deltaDistY;
-//     int x = 0;
+void casting_rays(t_data *data)
+{
+    int num_rays = 120;
+    double fov = M_PI / 3.0;
 
-//     while (x < data->width)
-//     {
-//         mapx = (int)data->player->posx;
-//         mapy = (int)data->player->posy;
-//         cameraX = 2 * x / (double)data->width - 1;
-//         raydirX = data->player->dirx + data->player->planex * cameraX; 
-//         raydirY = data->player->diry + data->player->planey * cameraX;
-//         deltaDistX = fabs(1 / raydirX);
-//         deltaDistY = fabs(1 / raydirY);
-//         x++;
-//     }
-// }
+    double player_angle = atan2(data->player->diry, data->player->dirx);
 
-// void casting_rays(t_data *data)
-// {
-    
-// }
+    int r = 0;
+    while (r < num_rays)
+    {
+        double ray_angle = player_angle - (fov / 2.0) + (fov * r) / (num_rays - 1);
+
+        double raydirX = cos(ray_angle);
+        double raydirY = sin(ray_angle);
+
+        double rayX = data->player->posx;
+        double rayY = data->player->posy;
+
+        double step_size = 0.01;
+        int hit = 0;
+        int max_steps = (int)(20.0 / step_size);
+
+        int i = 0;
+        while (i < max_steps && !hit)
+        {
+            int mapx = (int)rayX;
+            int mapy = (int)rayY;
+            if (mapx < 0 || mapx >= MAP_SIZE || mapy < 0 || mapy >= MAP_SIZE)
+                break;
+            if (data->map[mapy][mapx] == '1')
+                hit = 1;
+
+            int drawX = (int)(rayX * data->tile_size);
+            int drawY = (int)(rayY * data->tile_size);
+            if (drawX >= 0 && drawX < data->width && drawY >= 0 && drawY < data->height)
+                my_mlx_pixel_put(data, drawX, drawY, 0xFF0000);
+
+            rayX += raydirX * step_size;
+            rayY += raydirY * step_size;
+            i++;
+        }
+        r++;
+    }
+}
 
 void charachter(t_data *data)
 {
@@ -86,7 +102,7 @@ void charachter(t_data *data)
         my_mlx_pixel_put(data, line_x, line_y, 0x00C000);
         step += 0.05;
     }
-    // casting_rays(data);
+    casting_rays(data);
     // raycasting_loop(data, data->player);
 }
 
@@ -178,11 +194,11 @@ int main()
     player = malloc(sizeof(t_player));
     player->posx = 0.0;
     player->posy = 0.0;
-    player->player_a = -M_PI / 2;
+    player->player_a = 3 * M_PI / 2;
     player->dirx = cos(player->player_a);
     player->diry = sin(player->player_a);
-    player->planex = -player->diry * 0.66;
-    player->planey = player->diry * 0.66;
+    player->planex = -player->diry * 0.33;
+    player->planey = player->diry * 0.33;
     data->map = map;
     data->player = player;
     data->img = NULL;
