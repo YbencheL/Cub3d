@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/24 16:06:18 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/25 17:57:27 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int close_program(t_data *data)
         mlx_destroy_display(data->mlx);
         free(data->mlx);
     }
-    free(data);
     free(data->player);
+    free(data);
     exit(0);
     return (0);
 }

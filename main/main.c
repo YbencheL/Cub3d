@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/25 13:56:10 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:47:51 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,16 @@ void casting_rays(t_data *data)
         int i = 0;
         while (i < max_steps && !hit)
         {
+            int drawX = (int)(rayX * data->tile_size);
+            int drawY = (int)(rayY * data->tile_size);
             int mapx = (int)rayX;
             int mapy = (int)rayY;
             if (mapx < 0 || mapx >= MAP_SIZE || mapy < 0 || mapy >= MAP_SIZE)
                 break;
             if (data->map[mapy][mapx] == '1')
                 hit = 1;
-
-            int drawX = (int)(rayX * data->tile_size);
-            int drawY = (int)(rayY * data->tile_size);
             if (drawX >= 0 && drawX < data->width && drawY >= 0 && drawY < data->height)
-                my_mlx_pixel_put(data, drawX, drawY, 0xFF0000);
-
+                my_mlx_pixel_put(data, drawX, drawY, 0x00C000);
             rayX += raydirX * step_size;
             rayY += raydirY * step_size;
             i++;
@@ -94,14 +92,14 @@ void charachter(t_data *data)
         }
         i++;
     }
-    double step = 0.0;
-    while (step < 5.0)
-    {
-        int line_x = (int)((data->player->posx + data->player->dirx * step * 0.2) * data->tile_size);
-        int line_y = (int)((data->player->posy + data->player->diry * step * 0.2) * data->tile_size);
-        my_mlx_pixel_put(data, line_x, line_y, 0x00C000);
-        step += 0.05;
-    }
+    // double step = 0.0;
+    // while (step < 5.0)
+    // {
+    //     int line_x = (int)((data->player->posx + data->player->dirx * step * 0.2) * data->tile_size);
+    //     int line_y = (int)((data->player->posy + data->player->diry * step * 0.2) * data->tile_size);
+    //     my_mlx_pixel_put(data, line_x, line_y, 0x00C000);
+    //     step += 0.05;
+    // }
     casting_rays(data);
     // raycasting_loop(data, data->player);
 }
