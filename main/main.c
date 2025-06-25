@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/25 18:47:51 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/25 18:53:16 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,43 @@ void casting_rays(t_data *data)
 {
     int num_rays = 120;
     double fov = M_PI / 3.0;
-
-    double player_angle = atan2(data->player->diry, data->player->dirx);
-
+    double ray_angle;
+    double player_angle;
+    double raydirX;
+    double raydirY;
+    double rayX;
+    double rayY;
+    double step_size;
+    int hit;
+    int max_steps;
+    int drawX;
+    int drawY;
+    int mapx;
+    int mapy;
     int r = 0;
+    int i;
+    
+    player_angle = atan2(data->player->diry, data->player->dirx);
     while (r < num_rays)
     {
-        double ray_angle = player_angle - (fov / 2.0) + (fov * r) / (num_rays - 1);
+        ray_angle = player_angle - (fov / 2.0) + (fov * r) / (num_rays - 1);
 
-        double raydirX = cos(ray_angle);
-        double raydirY = sin(ray_angle);
+        raydirX = cos(ray_angle);
+        raydirY = sin(ray_angle);
 
-        double rayX = data->player->posx;
-        double rayY = data->player->posy;
+        rayX = data->player->posx;
+        rayY = data->player->posy;
 
-        double step_size = 0.01;
-        int hit = 0;
-        int max_steps = (int)(20.0 / step_size);
-
-        int i = 0;
+        step_size = 0.01;
+        hit = 0;
+        max_steps = (int)(20.0 / step_size);
+        i = 0;
         while (i < max_steps && !hit)
         {
-            int drawX = (int)(rayX * data->tile_size);
-            int drawY = (int)(rayY * data->tile_size);
-            int mapx = (int)rayX;
-            int mapy = (int)rayY;
+            drawX = (int)(rayX * data->tile_size);
+            drawY = (int)(rayY * data->tile_size);
+            mapx = (int)rayX;
+            mapy = (int)rayY;
             if (mapx < 0 || mapx >= MAP_SIZE || mapy < 0 || mapy >= MAP_SIZE)
                 break;
             if (data->map[mapy][mapx] == '1')
