@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 13:25:59 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:03:33 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void init_vars(t_data *data, t_player *player)
 {
     player->posx = 0.0;
     player->posy = 0.0;
-    player->num_rays = 120;
+    player->num_rays = 60;
     player->fov = M_PI / 3.0;
     player->player_a = 3 * M_PI / 2;
     player->dirx = cos(player->player_a);
@@ -78,12 +78,11 @@ int main()
     init_vars(data, player);
     data->mlx = mlx_init();
     
-    // data->win2 = mlx_new_window(data->mlx, data->height, data->width, "qub3d");
-    data->win1 = mlx_new_window(data->mlx, data->height, data->width, "qub3d mini map");
+    data->win = mlx_new_window(data->mlx, data->height, data->width, "qub3d mini map");
     player_pos(player, map);
     pixel(data, data->map);
     charachter(data);
-    mlx_put_image_to_window(data->mlx, data->win1, data->img, 0, 0);
+    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     setup_h(data);
     mlx_loop(data->mlx);
     

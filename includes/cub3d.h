@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 12:43:04 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:18:08 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ typedef struct s_player
 typedef struct s_data
 {
     void *mlx;
-    void *win1;
-    void *win2;
+    void *win;
     void *img;
     char *addr;
     int height;
@@ -70,13 +69,12 @@ typedef struct s_data
     t_player *player;
 } t_data;
 
-
 //------------------features------------------------
 int     key_hook(int keycode, t_data *data);
 void    setup_h(t_data *data);
 int     close_program(t_data *data);
 void    move_player(t_player *player, double dx, double dy, char **map);
-void    rotate_player(t_data *data, double angle);
+void    rotate_player(t_data *data, double angle, char **map);
 
 //------------------main----------------------------
 void    pixel(t_data *data, char **map);

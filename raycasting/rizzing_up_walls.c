@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 13:28:40 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:19:41 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,41 @@
 
 void casting_walls(t_data *data, t_player *player, int ray_indx)
 {
-    double dx = player->hitx - player->posx;
-    double dy = player->hity - player->posy;
-    double distance = dx * player->dirx + dy * player->diry;
+    double dx;
+    double dy;
+    double distance;
+    double projection_plane_d;
+    double wall_height;
+    double draw_start;
+    double draw_end;
+    int y;
+    
+    dx = player->hitx - player->posx;
+    dy = player->hity - player->posy;
+    distance = dx * player->dirx + dy * player->diry;
 
-    double projection_plane_d = (data->width / 2) / tan(player->fov / 2);
-    double wall_height = (projection_plane_d * data->tile_size) / distance;
-
-    double draw_start = (data->height / 2) - (wall_height / 2);
-    double draw_end = (data->height / 2) + (wall_height / 2);
-
+    projection_plane_d = (data->width / 2) / tan(player->fov / 2);
+    wall_height = (projection_plane_d * 1) / distance;
+    draw_start = (data->height / 2) - (wall_height / 2);
+    draw_end = (data->height / 2) + (wall_height / 2);
     if (draw_start < 0)
         draw_start = 0;
     if (draw_end >= data->height)
         draw_end = data->height - 1;
-    int x = ray_indx;
-    int y = draw_start;
-    while (y <= draw_end)
+    y = 0;
+    while (y < draw_start)
     {
-        my_mlx_pixel_put(data, x, y, 0x00C000);
+        my_mlx_pixel_put(data, ray_indx, y, data->colors);
+        y++;
+    }
+    while (y < draw_end)
+    {
+        my_mlx_pixel_put(data, ray_indx, y, 0x00C000);
+        y++;
+    }
+    while (y < data->height)
+    {
+        my_mlx_pixel_put(data, ray_indx, y, data->colorg);
         y++;
     }
 }

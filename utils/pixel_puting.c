@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:06:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 10:08:28 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:03:57 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int redraw(t_data *data)
     
     pixel(data, data->map);
     charachter(data);
-    mlx_put_image_to_window(data->mlx, data->win1, data->img, 0, 0);
+    mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     return 0;
 }

@@ -6,13 +6,13 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 13:25:22 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:18:19 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void rendering_lines(t_data *data, t_player *player)
+int rendering_lines(t_data *data, t_player *player)
 {
     int i = 0;
     int hit = 0;
@@ -30,13 +30,15 @@ void rendering_lines(t_data *data, t_player *player)
             player->hitx = player->rayX;
             player->hity = player->rayY;
             hit = 1;
+            break;
         }
-        if (player->drawX >= 0 && player->drawX < data->width && player->drawY >= 0 && player->drawY < data->height)
-            my_mlx_pixel_put(data, player->drawX, player->drawY, 0x00C000);
+        // if (player->drawX >= 0 && player->drawX < data->width && player->drawY >= 0 && player->drawY < data->height)
+        //     my_mlx_pixel_put(data, player->drawX, player->drawY, 0x87CEEB);
         player->rayX += player->raydirX * player->step_size;
         player->rayY += player->raydirY * player->step_size;
         i++;
     }
+    return hit;
 }
 
 void casting_rays(t_data *data, t_player *player)
@@ -57,8 +59,8 @@ void casting_rays(t_data *data, t_player *player)
         player->rayY = data->player->posy;
 
         player->step_size = 0.01;
-        rendering_lines(data, player);
-        casting_walls(data, player, r);
+        if (rendering_lines(data, player))
+            casting_walls(data, player, r);
         r++;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 10:08:20 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 16:04:44 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int close_program(t_data *data)
 {
     if (data->img)
     mlx_destroy_image(data->mlx, data->img);
-    if (data->win1)
-    mlx_destroy_window(data->mlx, data->win1);
-    // if (data->win2)
-    //     mlx_destroy_window(data->mlx, data->win2);
+    if (data->win)
+    mlx_destroy_window(data->mlx, data->win);
     if (data->mlx)
     {
         mlx_destroy_display(data->mlx);
@@ -46,22 +44,23 @@ void move_player(t_player *player, double dx, double dy, char **map)
     }
 }
 
-// void move_player(t_data *data, double dx, double dy)
-// {
-//     data->player->posx += dx;
-//     data->player->posy += dy;
-// }
-
-void rotate_player(t_data *data, double angle)
+void rotate_player(t_data *data, double angle, char **map)
 {
-    data->player->player_a += angle;
-    if (data->player->player_a < 0)
-        data->player->player_a += 2 * M_PI;
-    else if (data->player->player_a > 2 * M_PI)
-        data->player->player_a -= 2 * M_PI;
+    int map_x = (int)data->player->posx;
+    int map_y = (int)data->player->posy;
+    
+    if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
+        map[map_y][map_x] != '1')
+    {
+        data->player->player_a += angle;
+        if (data->player->player_a < 0)
+            data->player->player_a += 2 * M_PI;
+        else if (data->player->player_a > 2 * M_PI)
+            data->player->player_a -= 2 * M_PI;
 
-    data->player->dirx = cos(data->player->player_a);
-    data->player->diry = sin(data->player->player_a);
+        data->player->dirx = cos(data->player->player_a);
+        data->player->diry = sin(data->player->player_a);
+    }
 }
 
 int key_hook(int keycode, t_data *data)
@@ -71,11 +70,11 @@ int key_hook(int keycode, t_data *data)
     if (keycode == 65307)
         close_program(data);
     else if (keycode == 65361)
-        rotate_player(data, -0.1);
+        rotate_player(data, -0.1, data->map);
     else if (keycode == 65362)
         move_player(data->player, data->player->dirx * speed, data->player->diry * speed, data->map);
     else if (keycode == 65363)
-        rotate_player(data, 0.1);
+        rotate_player(data, 0.1, data->map);
     else if (keycode == 65364)
         move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
 
@@ -86,9 +85,7 @@ int key_hook(int keycode, t_data *data)
 
 void setup_h(t_data *data)
 {
-    mlx_hook(data->win1, 17, 0, &close_program, data);
-    // mlx_hook(data->win2, 17, 0, &close_program, data);
-    mlx_hook(data->win1, 2, 1L<<0, &key_hook, data);
-    // mlx_hook(data->win2, 2, 1L<<0, &key_hook, data);
+    mlx_hook(data->win, 17, 0, &close_program, data);
+    mlx_hook(data->win, 2, 1L<<0, &key_hook, data);
     mlx_loop_hook(data->mlx, redraw, data);
 }
