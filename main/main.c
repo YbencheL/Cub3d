@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 10:15:21 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:25:59 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void init_vars(t_data *data, t_player *player)
     player->posx = 0.0;
     player->posy = 0.0;
     player->num_rays = 120;
-    player->fov = M_PI / 4.0;
+    player->fov = M_PI / 3.0;
     player->player_a = 3 * M_PI / 2;
     player->dirx = cos(player->player_a);
     player->diry = sin(player->player_a);
@@ -66,9 +66,9 @@ int main()
     "10100001",
     "10000101",
     "10000101",
-    "10000001",
+    "10P00001",
     "10001111",
-    "110P0001",
+    "11000001",
     "11111111",
     };
 

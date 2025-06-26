@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 10:14:45 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 12:43:04 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_player
     int drawY;
     int mapx;
     int mapy;
+    double hitx;
+    double hity;
 } t_player;
 
 typedef struct s_data
@@ -86,3 +88,4 @@ void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //------------------raycasting----------------------
 void    casting_rays(t_data *data, t_player *player);
+void    casting_walls(t_data *data, t_player *player, int ray_indx);

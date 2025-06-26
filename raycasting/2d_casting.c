@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 10:29:04 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:25:22 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ void rendering_lines(t_data *data, t_player *player)
         if (player->mapx < 0 || player->mapx >= MAP_SIZE || player->mapy < 0 || player->mapy >= MAP_SIZE)
             break;
         if (data->map[player->mapy][player->mapx] == '1')
+        {
+            player->hitx = player->rayX;
+            player->hity = player->rayY;
             hit = 1;
+        }
         if (player->drawX >= 0 && player->drawX < data->width && player->drawY >= 0 && player->drawY < data->height)
             my_mlx_pixel_put(data, player->drawX, player->drawY, 0x00C000);
         player->rayX += player->raydirX * player->step_size;
@@ -40,6 +44,7 @@ void casting_rays(t_data *data, t_player *player)
     int r = 0;
     
     player->player_angle = atan2(data->player->diry, data->player->dirx);
+    player->num_rays = data->width;
     while (r < player->num_rays)
     {
         player->ray_angle = player->player_angle - (player->fov / 2.0)
@@ -53,6 +58,7 @@ void casting_rays(t_data *data, t_player *player)
 
         player->step_size = 0.01;
         rendering_lines(data, player);
+        casting_walls(data, player, r);
         r++;
     }
 }
