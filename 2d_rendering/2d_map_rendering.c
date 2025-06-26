@@ -6,19 +6,42 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:05:19 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 10:05:43 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 10:35:44 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void pixel(t_data *data, char **map)
+void pix_by_pix_rendiring(t_data *data, int x, int y, int original_color)
 {
-    int i = 0, j = 0;
-    int x, y;
+    int i = 0;
+    int j;
     int start_x;
     int start_y;
     int color;
+    
+    while(i < data->tile_size)
+    {
+        j = 0;
+        while(j < data->tile_size)
+        {
+            color = original_color;
+            if ((i == 1 || i == 0) || (i == data->tile_size - 2 || i == data->tile_size - 1)
+                || (j == 1 || j == 0) || (j == data->tile_size - 2 || j ==  data->tile_size - 1))
+                color = data->colora;
+            start_x = x * data->tile_size + j;
+            start_y = y * data->tile_size + i;
+            if (start_x < data->width && start_y < data->height)
+                my_mlx_pixel_put(data, start_x, start_y, color);
+            j++;
+        }
+        i++;
+    }
+}
+
+void pixel(t_data *data, char **map)
+{
+    int x, y;
     int original_color;
 
     if (data->img)
@@ -36,24 +59,7 @@ void pixel(t_data *data, char **map)
                 original_color = data->colorg;
             else
                 original_color = data->colors;
-            i = 0;
-            while(i < data->tile_size)
-            {
-                j = 0;
-                while(j < data->tile_size)
-                {
-                    color = original_color;
-                    if ((i == 1 || i == 0) || (i == data->tile_size - 2 || i == data->tile_size - 1)
-                        || (j == 1 || j == 0) || (j == data->tile_size - 2 || j ==  data->tile_size - 1))
-                        color = data->colora;
-                    start_x = x * data->tile_size + j;
-                    start_y = y * data->tile_size + i;
-                    if (start_x < data->width && start_y < data->height)
-                        my_mlx_pixel_put(data, start_x, start_y, color);
-                    j++;
-                }
-                i++;
-            }
+            pix_by_pix_rendiring(data, x, y, original_color);
             x++;
         }
         y++;
