@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/24 20:58:19 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 10:14:45 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ typedef struct s_player
     double planex;
     double planey;
     double player_a;
+    int num_rays;
+    double fov;
+    double ray_angle;
+    double player_angle;
+    double raydirX;
+    double raydirY;
+    double rayX;
+    double rayY;
+    double step_size;
+    int max_steps;
+    int drawX;
+    int drawY;
+    int mapx;
+    int mapy;
 } t_player;
 
 typedef struct s_data
@@ -55,14 +69,20 @@ typedef struct s_data
 } t_data;
 
 
-//------------------features----------------------
-int key_hook(int keycode, t_data *data);
-void setup_h(t_data *data);
-int close_program(t_data *data);
-// void move_player(t_data *data, double dx, double dy);
-void move_player(t_player *player, double dx, double dy, char **map);
-void rotate_player(t_data *data, double angle);
+//------------------features------------------------
+int     key_hook(int keycode, t_data *data);
+void    setup_h(t_data *data);
+int     close_program(t_data *data);
+void    move_player(t_player *player, double dx, double dy, char **map);
+void    rotate_player(t_data *data, double angle);
 
-//------------------main----------------------
-void pixel(t_data *data, char **map);
-void charachter(t_data *data);
+//------------------main----------------------------
+void    pixel(t_data *data, char **map);
+void    charachter(t_data *data);
+
+//------------------utils---------------------------
+int     redraw(t_data *data);
+void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+//------------------raycasting----------------------
+void    casting_rays(t_data *data, t_player *player);

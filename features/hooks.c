@@ -6,25 +6,11 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/25 17:57:27 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/26 10:08:20 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int redraw(t_data *data)
-{
-    if (data->img)
-        mlx_destroy_image(data->mlx, data->img);
-    
-    data->img = mlx_new_image(data->mlx, data->width, data->height);
-    data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
-    
-    pixel(data, data->map);
-    charachter(data);
-    mlx_put_image_to_window(data->mlx, data->win1, data->img, 0, 0);
-    return 0;
-}
 
 int close_program(t_data *data)
 {
