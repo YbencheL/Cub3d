@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 16:18:19 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 09:50:24 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int rendering_lines(t_data *data, t_player *player)
 {
     int i = 0;
     int hit = 0;
+        
     player->max_steps = (int)(20.0 / player->step_size);
     while (i < player->max_steps && !hit)
     {

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:06:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 16:03:57 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:49:38 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int redraw(t_data *data)
 {
-    if (data->img)
+    handle_input(data);
+    if (data->img) 
         mlx_destroy_image(data->mlx, data->img);
     
     data->img = mlx_new_image(data->mlx, data->width, data->height);

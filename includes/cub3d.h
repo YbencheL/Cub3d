@@ -6,12 +6,12 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 16:18:08 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:04:38 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define MAP_SIZE 8
-#define LINE_LENGTH 8
+#define NUM_KEYS 70000 
 #define M_PI 3.14159265358979323846
 
 
@@ -46,6 +46,9 @@ typedef struct s_player
     int mapy;
     double hitx;
     double hity;
+    double draw_start;
+    double draw_end;
+    double distance;
 } t_player;
 
 typedef struct s_data
@@ -66,11 +69,12 @@ typedef struct s_data
     int colorg;
     int tile_size;
     char **map;
+    int key_states[NUM_KEYS];
     t_player *player;
 } t_data;
 
 //------------------features------------------------
-int     key_hook(int keycode, t_data *data);
+void     handle_input(t_data *data);
 void    setup_h(t_data *data);
 int     close_program(t_data *data);
 void    move_player(t_player *player, double dx, double dy, char **map);

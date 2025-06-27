@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 16:04:44 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:22:45 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,46 @@ void rotate_player(t_data *data, double angle, char **map)
             data->player->player_a += 2 * M_PI;
         else if (data->player->player_a > 2 * M_PI)
             data->player->player_a -= 2 * M_PI;
-
         data->player->dirx = cos(data->player->player_a);
         data->player->diry = sin(data->player->player_a);
     }
 }
 
-int key_hook(int keycode, t_data *data)
+int key_press(int keycode, t_data *data)
 {
-    double speed = 0.1;
-
-    if (keycode == 65307)
-        close_program(data);
-    else if (keycode == 65361)
-        rotate_player(data, -0.1, data->map);
-    else if (keycode == 65362)
-        move_player(data->player, data->player->dirx * speed, data->player->diry * speed, data->map);
-    else if (keycode == 65363)
-        rotate_player(data, 0.1, data->map);
-    else if (keycode == 65364)
-        move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
-
-    redraw(data);
+    if (keycode >= 0 && keycode < NUM_KEYS)
+        data->key_states[keycode] = 1;
     return 0;
 }
 
+int key_release(int keycode, t_data *data)
+{
+    if (keycode >= 0 && keycode < NUM_KEYS)
+        data->key_states[keycode] = 0;
+    return 0;
+}
+
+void handle_input(t_data *data)
+{
+    double speed = 0.05;
+
+    if (data->key_states[65307])
+        close_program(data);
+    if (data->key_states[65361])
+        rotate_player(data, -0.04, data->map);
+    if (data->key_states[65362])
+        move_player(data->player, data->player->dirx * speed, data->player->diry * speed, data->map);
+    if (data->key_states[65363])
+        rotate_player(data, 0.04, data->map);
+    if (data->key_states[65364])
+        move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
+}
 
 void setup_h(t_data *data)
 {
     mlx_hook(data->win, 17, 0, &close_program, data);
-    mlx_hook(data->win, 2, 1L<<0, &key_hook, data);
+    mlx_hook(data->win, 2, 1L<<0, &key_press, data);
+    mlx_hook(data->win, 3, 1L<<1, &key_release, data);
     mlx_loop_hook(data->mlx, redraw, data);
 }
+

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/26 16:03:33 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:05:05 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ int main()
 {
     t_data *data;
     t_player *player;
-    
+
     char *map[MAP_SIZE] = {
-    "11111111",
-    "10100001",
-    "10000101",
-    "10000101",
-    "10P00001",
-    "10001111",
-    "11000001",
-    "11111111",
+        "11111111",
+        "10100001",
+        "10111101",
+        "10000101",
+        "10P00001",
+        "10001111",
+        "11000001",
+        "11111111",
     };
 
     data = malloc(sizeof(t_data));
@@ -77,14 +77,18 @@ int main()
     data->map = map;
     init_vars(data, player);
     data->mlx = mlx_init();
-    
-    data->win = mlx_new_window(data->mlx, data->height, data->width, "qub3d mini map");
+    if (!data->mlx)
+        return (1);
+    data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
+    if (!data->win)
+        return (1);
+    data->img = mlx_new_image(data->mlx, data->width, data->height);
+    data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
     player_pos(player, map);
     pixel(data, data->map);
     charachter(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     setup_h(data);
     mlx_loop(data->mlx);
-    
     return 0;
 }
