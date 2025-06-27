@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 11:22:45 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 17:04:52 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,21 @@ int key_release(int keycode, t_data *data)
 
 void handle_input(t_data *data)
 {
-    double speed = 0.05;
-
+    double speed = 0.02;
     if (data->key_states[65307])
         close_program(data);
     if (data->key_states[65361])
         rotate_player(data, -0.04, data->map);
-    if (data->key_states[65362])
+    if (data->key_states[119])
         move_player(data->player, data->player->dirx * speed, data->player->diry * speed, data->map);
     if (data->key_states[65363])
         rotate_player(data, 0.04, data->map);
-    if (data->key_states[65364])
+    if (data->key_states[115])
         move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
+    if (data->key_states[100])
+        move_player(data->player, speed, 0, data->map);
+    if (data->key_states[97])
+        move_player(data->player, -speed, 0, data->map);
 }
 
 void setup_h(t_data *data)
