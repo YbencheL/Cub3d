@@ -3,23 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 19:04:44 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 21:47:03 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 #define MAP_SIZE 8
 #define NUM_KEYS 70000 
 #define M_PI 3.14159265358979323846
 
 
-#include "../minilibx-linux/mlx.h"
+// #include "../minilibx-linux/mlx.h"
+#include "mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
+#include "../get_next_line/get_next_line.h"
+#include "../libft/libft.h"
+
+typedef struct s_cub
+{
+    char **file;
+    char **map;
+    char **map_plus;
+    int row;
+    int col;
+    char *no;
+    char *so;
+    char *we;
+    char *ea;
+    char *f;
+    char *c;
+    char d;
+}t_cub;
 
 typedef struct s_player
 {
@@ -91,3 +114,21 @@ void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 //------------------raycasting----------------------
 void    casting_rays(t_data *data, t_player *player);
 void    casting_walls(t_data *data, t_player *player, int ray_indx);
+
+//------------------parsing----------------------
+void    ft_parsing(t_cub *game, char *av);
+void copy_map(t_cub *game, int i, int l);
+void check_arg(int ac, char **av);
+void check_map_plus(t_cub *game);
+int check_char(t_cub *game, int l);
+int conut_split(char **line);
+void conut_col(t_cub *game, int i);
+void conut_row(t_cub *game, char *av);
+int skip_newline(t_cub *game, int l);
+void flood_fill(t_cub *game, int x, int y);
+void run_flood_fill(t_cub *game);
+void read_file(t_cub *game, char *av);
+int stor_texture(t_cub *game);
+void init_struct(t_cub *file);
+
+#endif

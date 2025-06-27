@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 19:10:39 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 21:51:14 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ void init_vars(t_data *data, t_player *player)
     data->offset_y = 0;
 }
 
-int main()
+int main(int ac, char **av)
 {
+    (void)ac;
+    (void)av;
     t_data *data;
     t_player *player;
-
+    
     char *map[MAP_SIZE] = {
         "11111111",
         "10100001",
@@ -72,7 +74,7 @@ int main()
         "11000001",
         "11111111",
     };
-
+    
     data = malloc(sizeof(t_data));
     memset(data, 0, sizeof(t_data));
     player = malloc(sizeof(t_player));
@@ -92,5 +94,36 @@ int main()
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     setup_h(data);
     mlx_loop(data->mlx);
+    // t_cub game;
+    // int i;
+    // check_arg(ac, av);
+    // ft_parsing(&game, av[1]);
+    // if (game.c && game.f && game.no && game.so && game.we && game.ea)
+    // {
+    //     // printf("%s\n", file.no);
+    //     // printf("%s\n", file.so);
+    //     // printf("%s\n", file.we);
+    //     // printf("%s\n", file.ea);
+    //     // printf("%s\n", file.f);
+    //     // printf("%s\n", file.c);
+    //     // printf("-------%c\n", file.d);
+    //     // printf("-------row : %d\n", file.row);
+    //     printf("-------col : %d\n", game.col);
+    //     i = 0;
+    //     if (game.map_plus)
+    //     {
+    //         printf("----------map----------\n");
+    //         while(game.map_plus[i])
+    //         {
+    //             int s = 0;
+    //             while(game.map_plus[i][s])
+    //                 printf("[%c]", game.map_plus[i][s++]);
+    //             printf("\n");
+    //             i++;
+    //         }
+    //     }
+    // }
+    // else
+    //     perror("ERROR");
     return 0;
 }
