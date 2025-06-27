@@ -6,11 +6,12 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 11:05:05 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/27 19:10:39 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include <string.h>
 
 void player_pos(t_player *player, char **map)
 {
@@ -34,6 +35,7 @@ void player_pos(t_player *player, char **map)
 
 void init_vars(t_data *data, t_player *player)
 {
+    data->player = player;
     player->posx = 0.0;
     player->posy = 0.0;
     player->num_rays = 60;
@@ -43,7 +45,6 @@ void init_vars(t_data *data, t_player *player)
     player->diry = sin(player->player_a);
     player->planex = -player->diry * 0.33;
     player->planey = player->diry * 0.33;
-    data->player = player;
     data->img = NULL;
     data->addr = NULL;
     data->colors = 0xF0EAD6;
@@ -73,6 +74,7 @@ int main()
     };
 
     data = malloc(sizeof(t_data));
+    memset(data, 0, sizeof(t_data));
     player = malloc(sizeof(t_player));
     data->map = map;
     init_vars(data, player);
