@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 21:45:29 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/06/28 09:38:52 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void handle_input(t_data *data)
     if (data->key_states[115])
         move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
     if (data->key_states[100])
-        move_player(data->player, speed, 0, data->map);
+        move_player(data->player, -data->player->diry * speed, data->player->dirx * speed, data->map);
     if (data->key_states[97])
-        move_player(data->player, -speed, 0, data->map);
+        move_player(data->player, data->player->diry * speed, -data->player->dirx * speed, data->map);
 }
 
 void setup_h(t_data *data)
