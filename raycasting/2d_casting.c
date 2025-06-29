@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 09:50:24 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:19:46 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int rendering_lines(t_data *data, t_player *player)
 {
     int i = 0;
     int hit = 0;
+    
+    int prev_mapx = player->mapx;    
+    int prev_mapy = player->mapy;
         
     player->max_steps = (int)(20.0 / player->step_size);
     while (i < player->max_steps && !hit)
@@ -31,6 +34,10 @@ int rendering_lines(t_data *data, t_player *player)
             player->hitx = player->rayX;
             player->hity = player->rayY;
             hit = 1;
+            if (prev_mapx != player->mapx)
+                player->vertical = 1;
+            else if (prev_mapy != player->mapy)
+                player->vertical = 0;
             break;
         }
         // if (player->drawX >= 0 && player->drawX < data->width && player->drawY >= 0 && player->drawY < data->height)
