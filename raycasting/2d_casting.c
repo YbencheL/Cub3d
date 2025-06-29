@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 11:19:46 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 15:33:43 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int rendering_lines(t_data *data, t_player *player)
     int i = 0;
     int hit = 0;
     
-    int prev_mapx = player->mapx;    
-    int prev_mapy = player->mapy;
-        
+    int prev_mapx;    
+    int prev_mapy;
+    
+    prev_mapx = player->mapx;
+    prev_mapy = player->mapy;
     player->max_steps = (int)(20.0 / player->step_size);
     while (i < player->max_steps && !hit)
     {
@@ -40,8 +42,7 @@ int rendering_lines(t_data *data, t_player *player)
                 player->vertical = 0;
             break;
         }
-        // if (player->drawX >= 0 && player->drawX < data->width && player->drawY >= 0 && player->drawY < data->height)
-        //     my_mlx_pixel_put(data, player->drawX, player->drawY, 0x87CEEB);
+        // my_mlx_pixel_put(data, player->drawX, player->drawY, 0x87CEEB);
         player->rayX += player->raydirX * player->step_size;
         player->rayY += player->raydirY * player->step_size;
         i++;

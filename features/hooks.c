@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/28 09:38:52 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 15:22:26 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 int close_program(t_data *data)
 {
+    if (data->north.img)
+        mlx_destroy_image(data->mlx, data->north.img);
+    if (data->south.img)
+        mlx_destroy_image(data->mlx, data->south.img);
+    if (data->west.img)
+        mlx_destroy_image(data->mlx, data->west.img);
+    if (data->east.img)
+        mlx_destroy_image(data->mlx, data->east.img);
     if (data->img)
     mlx_destroy_image(data->mlx, data->img);
     if (data->win)

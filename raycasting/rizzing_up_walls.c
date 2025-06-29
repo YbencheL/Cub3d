@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 10:56:30 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:37:15 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
         my_mlx_pixel_put(data, ray_indx, y, data->colors);
         y++;
     }
+    // textures_logic(data, player);
     while (y < player->draw_end)
     {
         my_mlx_pixel_put(data, ray_indx, y, color);
