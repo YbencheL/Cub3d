@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 10:55:11 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:59:48 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,10 @@ typedef struct s_data
     char **map;
     int key_states[NUM_KEYS];
     t_player *player;
+    t_textures west;
+    t_textures east;
+    t_textures north;
+    t_textures south;
 } t_data;
 
 //------------------features------------------------

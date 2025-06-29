@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 10:44:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:56:30 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int shade_color(int base_color, double distance)
     int b = (base_color & 0xFF) * factor;
     return (r << 16) | (g << 8) | b;
 }
+
+// void textures_logic(t_data *data, t_player *player)
+// {
+    
+// }
 
 void casting_walls(t_data *data, t_player *player, int ray_indx)
 {
