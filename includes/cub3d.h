@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 21:47:03 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:55:11 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,25 @@ typedef struct s_cub
     char *c;
     char d;
 }t_cub;
+
+typedef enum s_directions
+{
+    WEST,
+    EAST,
+    NORTH,
+    SOUTH
+} t_directions;
+
+typedef struct s_textures
+{
+    void *img;
+    char *addr;
+    int height;
+    int width;
+    int bbq;
+    int indian;
+    int sizel;
+} t_textures;
 
 typedef struct s_player
 {

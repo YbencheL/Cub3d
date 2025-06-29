@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 10:48:15 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:54:56 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int main(int ac, char **av)
     };
     
     data = malloc(sizeof(t_data));
-    memset(data, 0, sizeof(t_data));
+    ft_memset(data, 0, sizeof(t_data));
     player = malloc(sizeof(t_player));
     data->map = map;
     init_vars(data, player);
