@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:06:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 18:59:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:48:20 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int redraw(t_data *data)
     
     pixel(data, data->map);
     charachter(data);
+    casting_rays(data, data->player);
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     return 0;
 }

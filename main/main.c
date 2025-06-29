@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/27 21:51:14 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:48:15 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int main(int ac, char **av)
     player_pos(player, map);
     pixel(data, data->map);
     charachter(data);
+    casting_rays(data, data->player);
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     setup_h(data);
     mlx_loop(data->mlx);
