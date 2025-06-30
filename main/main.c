@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 15:44:45 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:14:30 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void init_vars(t_data *data, t_player *player)
     data->colora = 0x000000;
     data->colorg = 0x808080;
     data->tile_size = 100;
-    data->height = 800;
-    data->width = 800;
+    data->height = 750;
+    data->width = 850;
     data->offset_x = 0;
     data->offset_y = 0;
 }
@@ -83,7 +83,7 @@ int main(int ac, char **av)
     
     char *map[MAP_SIZE] = {
         "11111111",
-        "10100001",
+        "10000001",
         "10111101",
         "10000101",
         "10P00001",

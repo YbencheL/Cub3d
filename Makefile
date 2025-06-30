@@ -11,10 +11,10 @@ OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a
 
-all: cub3d
+all: cub3D
 
-cub3d: $(OBJ) $(LIBFT)
-	$(CC)  $(OBJ) $(LDFLAGS) $(LIBFT) -o cub3d
+cub3D: $(OBJ) $(LIBFT)
+	$(CC)  $(OBJ) $(LDFLAGS) $(LIBFT) -o cub3D
 
 $(LIBFT):
 	make -C libft
@@ -28,6 +28,6 @@ clean:
 
 fclean: clean
 	make -C libft fclean
-	rm -f cub3d
+	rm -f cub3D
 
 re: fclean all

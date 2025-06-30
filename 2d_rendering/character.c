@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:05:58 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/29 10:48:10 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/06/30 10:10:32 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void charachter(t_data *data)
     //     my_mlx_pixel_put(data, line_x, line_y, 0x00C000);
     //     step += 0.05;
     // }
-    // raycasting_loop(data, data->player);
 }
