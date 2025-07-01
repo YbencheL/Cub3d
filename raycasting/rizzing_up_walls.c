@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/30 18:04:55 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:11:49 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,17 @@ int shade_color(int base_color, double distance)
 
 // void textures_logic(t_data *data, t_player *player)
 // {
+//     double wall_x;
+//     int tex_x;
+//     int texture_width = 64;
     
+//     if (player->vertical == 1)
+//         wall_x = player->hitx;
+//     else if (player->vertical == 0)
+//         wall_x = player->hity;
+//     wall_x = wall_x - floor(wall_x);
+//     tex_x = (int)wall_x * texture_width;
+//     tex_x = texture_width - tex_x -1;
 // }
 
 void casting_walls(t_data *data, t_player *player, int ray_indx)
@@ -38,7 +48,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     dy = player->hity - player->posy;
     player->distance = dx * player->dirx + dy * player->diry;
     projection_plane_d = (data->width / 2) / tan(player->fov / 2);
-    wall_height = (projection_plane_d * 1) / player->distance;
+    wall_height = (projection_plane_d) / player->distance;
     player->draw_start = (data->height / 2) - (wall_height / 2);
     player->draw_end = (data->height / 2) + (wall_height / 2);
     if (player->draw_start < 0)
