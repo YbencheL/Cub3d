@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 13:28:11 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:31:02 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,6 @@ typedef struct s_player
     int     vertical;
 } t_player;
 
-typedef struct s_data2
-{
-    void        *mlx;
-    void        *win;
-    void        *img;
-    char        *addr;
-    int         bbq;
-    int         indian;
-    int         sizel;
-} t_data2;
-
 typedef struct s_data
 {
     void        *mlx;
@@ -130,9 +119,7 @@ typedef struct s_data
     t_textures  east;
     t_textures  north;
     t_textures  south;
-    t_data2 *minimap;
 } t_data;
-
 
 //------------------features------------------------
 void    handle_input(t_data *data);

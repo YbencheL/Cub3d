@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 13:27:55 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:31:17 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int	main(int ac, char **av)
 		return (1);
 	init_textures(data);
 	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
-	data->win1 = mlx_new_window(data->mlx, data->width, data->height, "cub3d mini map");
 	if (!data->win)
 		return (1);
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
@@ -118,7 +117,6 @@ int	main(int ac, char **av)
 	// charachter(data);
 	casting_rays(data, data->player);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	mlx_put_image_to_window(data->minimap->mlx, data->minimap->win, data->minimap->img, 0, 0);
 	setup_h(data);
 	mlx_loop(data->mlx);
 	// t_cub game;
