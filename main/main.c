@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/30 13:14:30 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:51:48 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void    init_textures(t_data *data)
     data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/lol2.xpm", &data->south.width, &data->south.height);
     data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq, &data->south.sizel, &data->south.indian);
     
-    data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/lol1.xpm", &data->west.width, &data->west.height);
+    data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/lol3.xpm", &data->west.width, &data->west.height);
     data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq, &data->west.sizel, &data->west.indian);
     
-    data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/lol2.xpm", &data->east.width, &data->east.height);
+    data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/lol4.xpm", &data->east.width, &data->east.height);
     data->east.addr = mlx_get_data_addr(data->east.img, &data->east.bbq, &data->east.sizel, &data->east.indian);
 }
 
