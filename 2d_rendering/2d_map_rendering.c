@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:05:19 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 13:20:03 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:33:25 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void pix_by_pix_rendiring(t_data *data, int x, int y, int original_color)
             if ((i == 1 || i == 0) || (i == data->tile_size - 2 || i == data->tile_size - 1)
                 || (j == 1 || j == 0) || (j == data->tile_size - 2 || j ==  data->tile_size - 1))
                 color = data->colora;
-            start_x = x * data->tile_size + j;
-            start_y = y * data->tile_size + i;
-            if (start_x < data->width && start_y < data->height)
+            start_x = x * data->tile_size - data->offset_x;
+            start_y = y * data->tile_size - data->offset_y;
+            if (start_x + data->tile_size >= 0 && start_x < data->width &&
+                start_y + data->tile_size >= 0 && start_y < data->height)
                 my_mlx_pixel_put(data, start_x, start_y, color);
             j++;
         }
@@ -50,6 +51,8 @@ void pixel(t_data *data, char **map)
     data->img = mlx_new_image(data->mlx, data->width, data->height);
     data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
     y = 0;
+    data->offset_x = data->player->posx * data->tile_size - data->width / 2;
+    data->offset_y = data->player->posy * data->tile_size - data->height / 2;
     while(y < MAP_SIZE)
     {
         x = 0;

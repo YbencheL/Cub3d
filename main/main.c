@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 13:31:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:31:01 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ void	init_vars(t_data *data, t_player *player)
 	data->colora = 0x000000;
 	data->colorg = 0x808080;
 	data->tile_size = 100;
-	data->height = 1000;
-	data->width = 1300;
-	data->offset_x = 0;
-	data->offset_y = 0;
+	data->height = 800;
+	data->width = 900;
 }
 
 int	main(int ac, char **av)
@@ -89,14 +87,16 @@ int	main(int ac, char **av)
 	t_player	*player;
 
 	char *map[MAP_SIZE] = {
-		"11111111",
-		"10000001",
-		"10111101",
-		"10000101",
-		"10P00001",
-		"10001111",
-		"11000001",
-		"11111111",
+		"1111111111",
+		"1P00000001",
+		"1011111101",
+		"1000000101",
+		"1010110101",
+		"1010000101",
+		"1011111101",
+		"1000000001",
+		"1000000001",
+		"1111111111"
 	};
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 13:31:02 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:04:33 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#define MAP_SIZE 8
+#define MAP_SIZE 10
 #define NUM_KEYS 70000 
 #define M_PI 3.14159265358979323846
 
