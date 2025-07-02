@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:06:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/01 17:08:06 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:02:39 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 int redraw(t_data *data)
 {
     handle_input(data);
-    if (data->img) 
-        mlx_destroy_image(data->mlx, data->img);
-    
-    data->img = mlx_new_image(data->mlx, data->width, data->height);
-    data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
-    
     // pixel(data, data->map);
     // charachter(data);
     casting_rays(data, data->player);
