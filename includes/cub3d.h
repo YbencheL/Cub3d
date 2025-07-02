@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 10:35:09 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:28:11 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,75 +54,88 @@ typedef enum s_directions
 
 typedef struct s_textures
 {
-    void *img;
-    char *addr;
-    int height;
-    int width;
-    int bbq;
-    int indian;
-    int sizel;
+    void    *img;
+    char    *addr;
+    int     height;
+    int     width;
+    int     bbq;
+    int     indian;
+    int     sizel;
 } t_textures;
 
 typedef struct s_player
 {
-    double posx;
-    double posy;
-    double dirx;
-    double diry;
-    double planex;
-    double planey;
-    double player_a;
-    int num_rays;
-    double fov;
-    double ray_angle;
-    double player_angle;
-    double raydirX;
-    double raydirY;
-    double rayX;
-    double rayY;
-    double step_size;
-    int max_steps;
-    int drawX;
-    int drawY;
-    int mapx;
-    int mapy;
-    double hitx;
-    double hity;
-    double draw_start;
-    double draw_end;
-    double distance;
+    double  posx;
+    double  posy;
+    double  dirx;
+    double  diry;
+    double  planex;
+    double  planey;
+    double  player_a;
+    int     num_rays;
+    double  fov;
+    double  ray_angle;
+    double  player_angle;
+    double  raydirX;
+    double  raydirY;
+    double  rayX;
+    double  rayY;
+    double  step_size;
+    int     max_steps;
+    int     drawX;
+    int     drawY;
+    int     mapx;
+    int     mapy;
+    double  hitx;
+    double  hity;
+    double  draw_start;
+    double  draw_end;
+    double  distance;
     int     vertical;
 } t_player;
 
+typedef struct s_data2
+{
+    void        *mlx;
+    void        *win;
+    void        *img;
+    char        *addr;
+    int         bbq;
+    int         indian;
+    int         sizel;
+} t_data2;
+
 typedef struct s_data
 {
-    void *mlx;
-    void *win;
-    void *win1;
-    void *img;
-    char *addr;
-    int height;
-    int width;
-    int bbq;
-    int indian;
-    int sizel;
-    int offset_x;
-    int offset_y;
-    int colors;
-    int colora;
-    int colorg;
-    int tile_size;
-    char **map;
-    int key_states[NUM_KEYS];
-    t_player *player;
-    t_textures west;
-    t_textures east;
-    t_textures north;
-    t_textures south;
+    void        *mlx;
+    void        *win;
+    void        *win1;
+    void        *img;
+    char        *addr;
+    int         height;
+    int         width;
+    int         bbq;
+    int         indian;
+    int         sizel;
+    int         offset_x;
+    int         offset_y;
+    int         colors;
+    int         colora;
+    int         colorg;
+    int         tile_size;
+    char        **map;
+    int         key_states[NUM_KEYS];
+    t_player    *player;
+    t_textures  west;
+    t_textures  east;
+    t_textures  north;
+    t_textures  south;
+    t_data2 *minimap;
 } t_data;
 
+
 //------------------features------------------------
-void     handle_input(t_data *data);
+void    handle_input(t_data *data);
 void    setup_h(t_data *data);
 int     close_program(t_data *data);
 void    move_player(t_player *player, double dx, double dy, char **map);
