@@ -6,14 +6,14 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/06/30 13:11:35 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:20:13 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 #include "mlx.h"
 
-int close_program(t_data *data)
+int     close_program(t_data *data)
 {
     if (data->north.img)
         mlx_destroy_image(data->mlx, data->north.img);
@@ -38,14 +38,12 @@ int close_program(t_data *data)
     return (0);
 }
 
-void move_player(t_player *player, double dx, double dy, char **map)
+void    move_player(t_player *player, double dx, double dy, char **map)
 {
     double new_x = player->posx + dx;
     double new_y = player->posy + dy;
-    
     int map_x = (int)new_x;
     int map_y = (int)new_y;
-    
     if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
         map[map_y][map_x] != '1') {
         player->posx += dx;
@@ -53,11 +51,10 @@ void move_player(t_player *player, double dx, double dy, char **map)
     }
 }
 
-void rotate_player(t_data *data, double angle, char **map)
+void    rotate_player(t_data *data, double angle, char **map)
 {
     int map_x = (int)data->player->posx;
     int map_y = (int)data->player->posy;
-    
     if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
         map[map_y][map_x] != '1')
     {
@@ -85,9 +82,11 @@ int key_release(int keycode, t_data *data)
     return 0;
 }
 
-void handle_input(t_data *data)
+void    handle_input(t_data *data)
 {
-    double speed = 0.02;
+    double speed;
+
+    speed = 0.02;
     if (data->key_states[65307])
         close_program(data);
     if (data->key_states[65361])
@@ -104,7 +103,7 @@ void handle_input(t_data *data)
         move_player(data->player, data->player->diry * speed, -data->player->dirx * speed, data->map);
 }
 
-void setup_h(t_data *data)
+void    setup_h(t_data *data)
 {
     mlx_hook(data->win, 17, 0, &close_program, data);
     mlx_hook(data->win, 2, 1L<<0, &key_press, data);

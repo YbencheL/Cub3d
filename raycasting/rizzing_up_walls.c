@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 11:34:51 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:20:21 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int shade_color(int base_color, double distance)
     return (r << 16) | (g << 8) | b;
 }
 
+// void textures_logic(t_data *data, t_player *player, int ray_indx)
+// {
+    
+// }
+
 void casting_walls(t_data *data, t_player *player, int ray_indx)
 {
     double dx;
@@ -28,7 +33,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     double projection_plane_d;
     double wall_height;
     int y;
-    
+
     dx = player->hitx - player->posx;
     dy = player->hity - player->posy;
     player->distance = dx * player->dirx + dy * player->diry;
@@ -41,18 +46,18 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     if (player->draw_end >= data->height)
         player->draw_end = data->height - 1;
     y = 0;
-    // int color = shade_color(0x0000D1, player->distance);
+    int color = shade_color(0x0000D1, player->distance);
     while (y < player->draw_start)
     {
         my_mlx_pixel_put(data, ray_indx, y, data->colors);
         y++;
     }
-    textures_logic(data, player, ray_indx);
-    // while (y < player->draw_end)
-    // {
-    //     my_mlx_pixel_put(data, ray_indx, y, color);
-    //     y++;
-    // }
+    // textures_logic(data, player, ray_indx);
+    while (y < player->draw_end)
+    {
+        my_mlx_pixel_put(data, ray_indx, y, color);
+        y++;
+    }
     y = player->draw_end;
     while (y < data->height)
     {
