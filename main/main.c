@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 14:31:01 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:40:02 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	init_vars(t_data *data, t_player *player)
 	data->colora = 0x000000;
 	data->colorg = 0x808080;
 	data->tile_size = 100;
-	data->height = 800;
-	data->width = 900;
+	data->height = 1000;
+	data->width = 1200;
 }
 
 int	main(int ac, char **av)
@@ -101,6 +101,7 @@ int	main(int ac, char **av)
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));
 	player = malloc(sizeof(t_player));
+	data->tex = malloc(sizeof(t_tex));
 	data->map = map;
 	init_vars(data, player);
 	data->mlx = mlx_init();

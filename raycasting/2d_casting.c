@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 14:10:48 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:38:22 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int rendering_lines(t_data *data, t_player *player)
             player->hitx = player->rayX;
             player->hity = player->rayY;
             hit = 1;
-            if (prev_mapx != player->mapx)
-                player->vertical = 1;
-            else if (prev_mapy != player->mapy)
-                player->vertical = 0;
+            player->vertical = (player->mapx != (int)(player->rayX - player->raydirX * STEP_SIZE));
             break;
         }
         // my_mlx_pixel_put(data, player->drawX, player->drawY, 0x87CEEB);

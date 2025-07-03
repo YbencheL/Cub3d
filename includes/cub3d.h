@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/02 14:04:33 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:33:33 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 # define CUB3D_H
 
 #define MAP_SIZE 10
-#define NUM_KEYS 70000 
+#define NUM_KEYS 70000
+#define MAX_STEPS 800
+#define STEP_SIZE 0.01
 #define M_PI 3.14159265358979323846
 
 
@@ -94,6 +96,15 @@ typedef struct s_player
     int     vertical;
 } t_player;
 
+typedef struct s_tex
+{
+    int     tex_width;
+    int     tex_height;
+    char    *texture_addr;
+    int     sizel;
+    int     bpp;
+} t_tex;
+
 typedef struct s_data
 {
     void        *mlx;
@@ -119,6 +130,7 @@ typedef struct s_data
     t_textures  east;
     t_textures  north;
     t_textures  south;
+    t_tex *tex;
 } t_data;
 
 //------------------features------------------------
