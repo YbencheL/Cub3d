@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/03 17:37:42 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:06:01 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
 	else
 		selecting_texture_ns(data, player, data->tex);
     int tex_x = (int)(wall_x * data->tex->tex_width);
-    // Optional flip for correct orientation
-    if ((player->vertical && player->raydirX > 0) || (!player->vertical && player->raydirY < 0))
-        tex_x = data->tex->tex_width - tex_x - 1;
     double draw_start = player->draw_start;
     double draw_end = player->draw_end;
     if (draw_start < 0) draw_start = 0;
@@ -106,7 +103,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     double dy;
     double projection_plane_d;
     double wall_height;
-    double y;
+    int y;
 
     dx = player->hitx - player->posx;
     dy = player->hity - player->posy;
@@ -121,11 +118,11 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
         player->draw_end = data->height - 1;
     double wall_x;
     if (player->vertical)
-        wall_x = player->hity;
+        wall_x = player->rayY;
     else
-        wall_x = player->hitx;
+        wall_x = player->rayX;
     wall_x -= floor(wall_x);
-    y = 0.0;
+    y = 0;
     // int color = shade_color(0x0000D1, player->distance);
     while (y < player->draw_start)
     {
@@ -138,7 +135,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     //     my_mlx_pixel_put(data, ray_indx, y, color);
     //     y++;
     // }
-    y = player->draw_end;
+    y = (int)player->draw_end;
     while (y < data->height)
     {
         my_mlx_pixel_put(data, ray_indx, y, data->colorg);

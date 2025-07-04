@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/03 17:38:22 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:11:08 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ int rendering_lines(t_data *data, t_player *player)
     int prev_mapx;    
     int prev_mapy;
     
-    prev_mapx = player->mapx;
-    prev_mapy = player->mapy;
-    player->max_steps = (int)(20.0 / player->step_size);
-    while (i < player->max_steps && !hit)
+    prev_mapx = -1;
+    prev_mapy = -1;
+    while (!hit)
     {
         player->drawX = (int)(player->rayX * data->tile_size);
         player->drawY = (int)(player->rayY * data->tile_size);
@@ -36,12 +35,16 @@ int rendering_lines(t_data *data, t_player *player)
             player->hitx = player->rayX;
             player->hity = player->rayY;
             hit = 1;
-            player->vertical = (player->mapx != (int)(player->rayX - player->raydirX * STEP_SIZE));
+            player->vertical = (player->mapx != prev_mapx);
             break;
         }
+        prev_mapx = player->mapx;
+        prev_mapy = player->mapy;
+        
         // my_mlx_pixel_put(data, player->drawX, player->drawY, 0x87CEEB);
         player->rayX += player->raydirX * player->step_size;
         player->rayY += player->raydirY * player->step_size;
+        
         i++;
     }
     return hit;
@@ -60,6 +63,13 @@ void casting_rays(t_data *data, t_player *player)
 
         player->raydirX = cos(player->ray_angle);
         player->raydirY = sin(player->ray_angle);
+
+        double len = sqrt(player->raydirX * player->raydirX + player->raydirY * player->raydirY);
+        if (len != 0.0)
+        {
+            player->raydirX /= len;
+            player->raydirY /= len;
+        }
 
         player->rayX = data->player->posx;
         player->rayY = data->player->posy;

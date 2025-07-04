@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/03 16:33:33 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:55:37 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 #define MAP_SIZE 10
 #define NUM_KEYS 70000
-#define MAX_STEPS 800
 #define STEP_SIZE 0.01
 #define M_PI 3.14159265358979323846
 
