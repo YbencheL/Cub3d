@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/04 14:06:01 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:28:28 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,37 @@ void selecting_texture_ns(t_data *data, t_player *player, t_tex *tex)
 
 void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
 {
+    int tex_x;
+    double draw_start;
+    double draw_end;
+    double wall_height;
+    double step;
+    double tex_pos;
+    double y;
+    int tex_y;
+    int color;
+    
 	if (player->vertical)
 		selecting_texture_we(data, player, data->tex);
 	else
 		selecting_texture_ns(data, player, data->tex);
-    int tex_x = (int)(wall_x * data->tex->tex_width);
-    double draw_start = player->draw_start;
-    double draw_end = player->draw_end;
+    tex_x = (int)(wall_x * data->tex->tex_width);
+    draw_start = player->draw_start;
+    draw_end = player->draw_end;
     if (draw_start < 0) draw_start = 0;
     if (draw_end >= data->height) draw_end = data->height - 1;
-    double wall_height = draw_end - draw_start;
-    double step = data->tex->tex_height / wall_height;
-    double tex_pos = (draw_start - data->height / 2 + wall_height / 2) * step;
+    wall_height = draw_end - draw_start;
+    step = data->tex->tex_height / wall_height;
+    tex_pos = (draw_start - data->height / 2 + wall_height / 2) * step;
 
-    double y = draw_start;
+    y = draw_start;
     while (y <= draw_end)
     {
-        int tex_y = (int)tex_pos;
+        tex_y = (int)tex_pos;
         if (tex_y < 0) tex_y = 0;
         if (tex_y >= data->tex->tex_height) tex_y = data->tex->tex_height - 1;
 
-        int color = *(unsigned int *)(data->tex->texture_addr +
+        color = *(unsigned int *)(data->tex->texture_addr +
                     tex_y * data->tex->sizel +
                     tex_x * (data->tex->bpp / 8));
         my_mlx_pixel_put(data, ray_indx, y, color);
@@ -104,6 +114,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     double projection_plane_d;
     double wall_height;
     int y;
+    double wall_x;
 
     dx = player->hitx - player->posx;
     dy = player->hity - player->posy;
@@ -116,11 +127,10 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
         player->draw_start = 0;
     if (player->draw_end >= data->height)
         player->draw_end = data->height - 1;
-    double wall_x;
     if (player->vertical)
-        wall_x = player->rayY;
+        wall_x = player->hity;
     else
-        wall_x = player->rayX;
+        wall_x = player->hitx;
     wall_x -= floor(wall_x);
     y = 0;
     // int color = shade_color(0x0000D1, player->distance);

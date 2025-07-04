@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/04 14:09:28 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:17:32 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	init_vars(t_data *data, t_player *player)
 	player->planey = player->diry * 0.33;
 	data->img = NULL;
 	data->addr = NULL;
-	data->colors = 0xF0EAD6;
+	data->colors = 0x05cdf8;
 	data->colora = 0x000000;
-	data->colorg = 0x808080;
+	data->colorg = 0x662b04;
 	data->tile_size = 64;
-	data->height = 800;
-	data->width = 800;
+	data->height = 900;
+	data->width = 950;
 }
 
 int	main(int ac, char **av)
