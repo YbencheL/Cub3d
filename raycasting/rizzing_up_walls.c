@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/04 14:28:28 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/05 13:48:35 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,18 +133,18 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
         wall_x = player->hitx;
     wall_x -= floor(wall_x);
     y = 0;
-    // int color = shade_color(0x0000D1, player->distance);
+    int color = shade_color(0x0000D1, player->distance);
     while (y < player->draw_start)
     {
         my_mlx_pixel_put(data, ray_indx, y, data->colors);
         y++;
     }
-    textures_logic(data, player, ray_indx, wall_x);
-    // while (y < player->draw_end)
-    // {
-    //     my_mlx_pixel_put(data, ray_indx, y, color);
-    //     y++;
-    // }
+    // textures_logic(data, player, ray_indx, wall_x);
+    while (y < player->draw_end)
+    {
+        my_mlx_pixel_put(data, ray_indx, y, color);
+        y++;
+    }
     y = (int)player->draw_end;
     while (y < data->height)
     {

@@ -6,48 +6,112 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/04 14:11:08 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/05 18:46:52 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int rendering_lines(t_data *data, t_player *player)
+static void	set_dda_delta(t_player *player, t_dda *dda)
 {
-    int i = 0;
-    int hit = 0;
-    
-    int prev_mapx;    
-    int prev_mapy;
-    
-    prev_mapx = -1;
-    prev_mapy = -1;
-    while (!hit)
-    {
-        player->drawX = (int)(player->rayX * data->tile_size);
-        player->drawY = (int)(player->rayY * data->tile_size);
-        player->mapx = (int)player->rayX;
-        player->mapy = (int)player->rayY;
-        if (player->mapx < 0 || player->mapx >= MAP_SIZE || player->mapy < 0 || player->mapy >= MAP_SIZE)
-            break;
-        if (data->map[player->mapy][player->mapx] == '1')
-        {
-            player->hitx = player->rayX;
-            player->hity = player->rayY;
-            hit = 1;
-            player->vertical = (player->mapx != prev_mapx);
-            break;
-        }
-        prev_mapx = player->mapx;
-        prev_mapy = player->mapy;
-        
-        // my_mlx_pixel_put(data, player->drawX, player->drawY, 0x87CEEB);
-        player->rayX += player->raydirX * player->step_size;
-        player->rayY += player->raydirY * player->step_size;
-        
-        i++;
-    }
-    return hit;
+    // delta hiya distance li khas lplayer ytravl bash ycrossi 1 vertical or horizontal line
+	if (player->raydirX == 0)
+		dda->delta_x = 1e30;
+	else
+		dda->delta_x = fabs(1.0 / player->raydirX);
+	if (player->raydirY == 0)
+		dda->delta_y = 1e30;
+	else
+		dda->delta_y = fabs(1.0 / player->raydirY);
+}
+
+static void	set_dda_stepx_sx(t_player *player, t_dda *dda)
+{
+    // step x hiya shm itijah l coordinants dyal lmap ghaymsho fiha bash ydkhlo fnixt grid
+    // side hiya distance li ghaymshi fiha lplayer bash ydkhl f next gridline x wla y
+	if (player->raydirX < 0)
+	{
+		dda->step_x = -1;
+		dda->side_x = (player->posx - dda->map_x) * dda->delta_x;
+	}
+	else
+	{
+		dda->step_x = 1;
+		dda->side_x = (dda->map_x + 1.0 - player->posx) * dda->delta_x;
+	}
+}
+
+static void	set_dda_stepy_sy(t_player *player, t_dda *dda)
+{
+	if (player->raydirY < 0)
+	{
+		dda->step_y = -1;
+		dda->side_y = (player->posy - dda->map_y) * dda->delta_y;
+	}
+	else
+	{
+		dda->step_y = 1;
+		dda->side_y = (dda->map_y + 1.0 - player->posy) * dda->delta_y;
+	}
+}
+
+static void	init_dda_vars(t_player *player, t_dda *dda)
+{
+	dda->map_x = (int)player->posx;
+	dda->map_y = (int)player->posy;
+	set_dda_delta(player, dda);
+	set_dda_stepx_sx(player, dda);
+	set_dda_stepy_sy(player, dda);
+}
+
+static void	store_hit_info(t_player *player, t_dda *dda)
+{
+	player->mapx = dda->map_x;
+	player->mapy = dda->map_y;
+	if (dda->side == 0)
+	{
+		player->hitx = player->posx + (dda->side_x - dda->delta_x) * player->raydirX;
+		player->hity = player->posy + (dda->side_x - dda->delta_x) * player->raydirY;
+		player->vertical = 1;
+	}
+	else
+	{
+		player->hitx = player->posx + (dda->side_y - dda->delta_y) * player->raydirX;
+		player->hity = player->posy + (dda->side_y - dda->delta_y) * player->raydirY;
+		player->vertical = 0;
+	}
+}
+
+int	rendering_lines(t_data *data, t_player *player)
+{
+	t_dda	dda;
+	int		hit;
+
+	hit = 0;
+	init_dda_vars(player, &dda);
+	while (!hit)
+	{
+		if (dda.side_x < dda.side_y)
+		{
+			dda.side_x += dda.delta_x;
+			dda.map_x += dda.step_x;
+			dda.side = 0;
+		}
+		else
+		{
+			dda.side_y += dda.delta_y;
+			dda.map_y += dda.step_y;
+			dda.side = 1;
+		}
+		if (dda.map_x < 0 || dda.map_x >= MAP_SIZE
+			|| dda.map_y < 0 || dda.map_y >= MAP_SIZE)
+			break;
+		if (data->map[dda.map_y][dda.map_x] == '1')
+			hit = 1;
+	}
+	if (hit)
+		store_hit_info(player, &dda);
+	return (hit);
 }
 
 void casting_rays(t_data *data, t_player *player)

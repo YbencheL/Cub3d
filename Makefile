@@ -19,7 +19,7 @@ cub3D: $(OBJ) $(LIBFT)
 $(LIBFT):
 	make -C libft
 
-%.o: %.c cub.h
+%.o: %.c cub3D.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

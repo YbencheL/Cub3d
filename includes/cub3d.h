@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/03 17:55:37 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/05 14:33:36 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@
 #include <math.h>
 #include "../get_next_line/get_next_line.h"
 #include "../libft/libft.h"
+
+typedef struct s_dda
+{
+	int		map_x;
+	int		map_y;
+	double	side_x;
+	double	side_y;
+	double	delta_x;
+	double	delta_y;
+	int		step_x;
+	int		step_y;
+	int		side;
+}			t_dda;
+
 
 typedef struct s_cub
 {
