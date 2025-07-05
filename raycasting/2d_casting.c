@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/05 18:46:52 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/05 20:24:27 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	set_dda_delta(t_player *player, t_dda *dda)
 {
     // delta hiya distance li khas lplayer ytravl bash ycrossi 1 vertical or horizontal line
 	if (player->raydirX == 0)
-		dda->delta_x = 1e30;
+		dda->delta_x = 1e30; // to not make it 0 cause 0 will cause to stay allways in one line
 	else
 		dda->delta_x = fabs(1.0 / player->raydirX);
 	if (player->raydirY == 0)
@@ -27,7 +27,7 @@ static void	set_dda_delta(t_player *player, t_dda *dda)
 
 static void	set_dda_stepx_sx(t_player *player, t_dda *dda)
 {
-    // step x hiya shm itijah l coordinants dyal lmap ghaymsho fiha bash ydkhlo fnixt grid
+    // step x hiya shm itijah l coordinants dyal lmap ghaymsho fih bash ydkhlo fnshi grid
     // side hiya distance li ghaymshi fiha lplayer bash ydkhl f next gridline x wla y
 	if (player->raydirX < 0)
 	{
@@ -68,6 +68,7 @@ static void	store_hit_info(t_player *player, t_dda *dda)
 {
 	player->mapx = dda->map_x;
 	player->mapy = dda->map_y;
+
 	if (dda->side == 0)
 	{
 		player->hitx = player->posx + (dda->side_x - dda->delta_x) * player->raydirX;
@@ -91,6 +92,7 @@ int	rendering_lines(t_data *data, t_player *player)
 	init_dda_vars(player, &dda);
 	while (!hit)
 	{
+		// if we travle more towards the vertical lines
 		if (dda.side_x < dda.side_y)
 		{
 			dda.side_x += dda.delta_x;
@@ -118,27 +120,20 @@ void casting_rays(t_data *data, t_player *player)
 {
     int r = 0;
     
+	// using arc tan of dirx and y covertes the values into a radiant angle
     player->player_angle = atan2(data->player->diry, data->player->dirx);
-    player->num_rays = data->width;
-    while (r < player->num_rays)
+    while (r < data->width)
     {
+		// from far left to far right
         player->ray_angle = player->player_angle - (player->fov / 2.0)
-            + (player->fov * r) / (player->num_rays - 1);
+            + (player->fov * r) / (data->width);
 
         player->raydirX = cos(player->ray_angle);
         player->raydirY = sin(player->ray_angle);
 
-        double len = sqrt(player->raydirX * player->raydirX + player->raydirY * player->raydirY);
-        if (len != 0.0)
-        {
-            player->raydirX /= len;
-            player->raydirY /= len;
-        }
-
         player->rayX = data->player->posx;
         player->rayY = data->player->posy;
 
-        player->step_size = 0.01;
         if (rendering_lines(data, player))
             casting_walls(data, player, r);
         r++;
