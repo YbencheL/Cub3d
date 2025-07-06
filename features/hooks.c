@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/05 13:52:37 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:05:04 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void    rotate_player(t_data *data, double angle, char **map)
     if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
         map[map_y][map_x] != '1')
     {
-        data->player->player_a += angle;
-        if (data->player->player_a < 0)
-            data->player->player_a += 2 * M_PI;
-        else if (data->player->player_a > 2 * M_PI)
-            data->player->player_a -= 2 * M_PI;
-        data->player->dirx = cos(data->player->player_a);
-        data->player->diry = sin(data->player->player_a);
+        data->player->player_angle+= angle;
+        if (data->player->player_angle< 0)
+            data->player->player_angle+= 2 * M_PI;
+        else if (data->player->player_angle> 2 * M_PI)
+            data->player->player_angle-= 2 * M_PI;
+        data->player->dirx = cos(data->player->player_angle);
+        data->player->diry = sin(data->player->player_angle);
     }
 }
 
