@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/06 11:17:53 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/06 15:03:37 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,10 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
     while (y <= draw_end)
     {
         tex_y = (int)tex_pos;
-        if (tex_y < 0) tex_y = 0;
-        if (tex_y >= data->tex->tex_height) tex_y = data->tex->tex_height - 1;
+        if (tex_y < 0)
+            tex_y = 0;
+        if (tex_y >= data->tex->tex_height)
+            y++;
 
         color = *(unsigned int *)(data->tex->texture_addr +
                     tex_y * data->tex->sizel +
