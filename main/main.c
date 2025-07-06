@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/05 20:24:11 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/06 11:05:54 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_textures(t_data *data)
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
-	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
+	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/east.xpm",
 			&data->west.width, &data->west.height);
 	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
 			&data->west.sizel, &data->west.indian);
@@ -74,8 +74,8 @@ void	init_vars(t_data *data, t_player *player)
 	data->colora = 0x000000;
 	data->colorg = 0x662b04;
 	data->tile_size = 100;
-	data->height = 1000;
-	data->width = 1000;
+	data->height = 900;
+	data->width = 950;
 }
 
 int	main(int ac, char **av)
@@ -94,7 +94,7 @@ int	main(int ac, char **av)
 		"1010000101",
 		"1011111101",
 		"1000000001",
-		"1000000001",
+		"1001110001",
 		"1111111111"
 	};
 	data = malloc(sizeof(t_data));

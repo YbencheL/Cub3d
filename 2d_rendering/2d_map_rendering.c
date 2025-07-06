@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:05:19 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/05 20:24:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/06 10:11:19 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void pix_by_pix_rendiring(t_data *data, int x, int y, int original_color)
                 color = data->colora;
             start_x = x * data->tile_size - data->offset_x;
             start_y = y * data->tile_size - data->offset_y;
+            // start_x = x * data->tile_size + i;
+            // start_y = y * data->tile_size + j;
             if (start_x + data->tile_size >= 0 && start_x < data->width &&
                 start_y + data->tile_size >= 0 && start_y < data->height)
                 my_mlx_pixel_put(data, start_x, start_y, color);

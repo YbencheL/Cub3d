@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/05 13:48:35 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/06 11:17:53 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     double dy;
     double projection_plane_d;
     double wall_height;
-    int y;
+    double y;
     double wall_x;
 
     dx = player->hitx - player->posx;
@@ -132,20 +132,20 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     else
         wall_x = player->hitx;
     wall_x -= floor(wall_x);
-    y = 0;
-    int color = shade_color(0x0000D1, player->distance);
+    y = 0.0;
+    // int color = shade_color(0x0000D1, player->distance);
     while (y < player->draw_start)
     {
         my_mlx_pixel_put(data, ray_indx, y, data->colors);
         y++;
     }
-    // textures_logic(data, player, ray_indx, wall_x);
-    while (y < player->draw_end)
-    {
-        my_mlx_pixel_put(data, ray_indx, y, color);
-        y++;
-    }
-    y = (int)player->draw_end;
+    textures_logic(data, player, ray_indx, wall_x);
+    // while (y < player->draw_end)
+    // {
+    //     my_mlx_pixel_put(data, ray_indx, y, color);
+    //     y++;
+    // }
+    y = player->draw_end;
     while (y < data->height)
     {
         my_mlx_pixel_put(data, ray_indx, y, data->colorg);

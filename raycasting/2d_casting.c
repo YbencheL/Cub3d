@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/05 20:24:27 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/06 10:11:28 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	store_hit_info(t_player *player, t_dda *dda)
 
 	if (dda->side == 0)
 	{
+		// shrh f tldraw but ila bghiti t+is wahd lwall w line dyal is more vertical you need to move horizontaly
 		player->hitx = player->posx + (dda->side_x - dda->delta_x) * player->raydirX;
 		player->hity = player->posy + (dda->side_x - dda->delta_x) * player->raydirY;
 		player->vertical = 1;
