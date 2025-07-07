@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/06 15:03:37 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:50:25 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ int shade_color(int base_color, double distance)
     int b = (base_color & 0xFF) * factor;
     return (r << 16) | (g << 8) | b;
 }
-
-// void textures_logic(t_data *data, t_player *player, int ray_indx)
-// {
-    
-// }
 
 void selecting_texture_we(t_data *data, t_player *player, t_tex *tex)
 {
@@ -95,11 +90,6 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
     while (y <= draw_end)
     {
         tex_y = (int)tex_pos;
-        if (tex_y < 0)
-            tex_y = 0;
-        if (tex_y >= data->tex->tex_height)
-            y++;
-
         color = *(unsigned int *)(data->tex->texture_addr +
                     tex_y * data->tex->sizel +
                     tex_x * (data->tex->bpp / 8));
@@ -114,7 +104,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     double dx;
     double dy;
     double projection_plane_d;
-    double wall_height;
+    int wall_height;
     double y;
     double wall_x;
 
@@ -122,7 +112,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     dy = player->hity - player->posy;
     player->distance = sqrt(dx * dx + dy * dy) * cos(player->ray_angle - player->player_angle);
     projection_plane_d = (data->width / 2.0) / tan(player->fov / 2.0);
-    wall_height = (projection_plane_d) / player->distance;
+    wall_height = (int)(projection_plane_d / player->distance);
     player->draw_start = (data->height / 2.0) - (wall_height / 2.0);
     player->draw_end = (data->height / 2.0) + (wall_height / 2.0);
     if (player->draw_start < 0)

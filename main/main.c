@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/06 15:04:18 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:45:37 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	init_vars(t_data *data, t_player *player)
 	player->mapx = (int)player->posx;
 	player->mapy = (int)player->posy;
 	player->fov = M_PI / 3.0;
+	player->player_angle = 0.0;
 	player->dirx = cos(player->player_angle);
 	player->diry = sin(player->player_angle);
 	player->planex = -player->diry * 0.33;
