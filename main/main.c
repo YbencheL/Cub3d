@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 13:45:37 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:24:43 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	player_pos(t_player *player, char **map)
 
 void	init_textures(t_data *data)
 {
-	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
+	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
 			&data->north.width, &data->north.height);
 	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
 			&data->north.sizel, &data->north.indian);
@@ -45,11 +45,11 @@ void	init_textures(t_data *data)
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
-	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/east.xpm",
+	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
 			&data->west.width, &data->west.height);
 	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
 			&data->west.sizel, &data->west.indian);
-	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
+	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
 			&data->east.width, &data->east.height);
 	data->east.addr = mlx_get_data_addr(data->east.img, &data->east.bbq,
 			&data->east.sizel, &data->east.indian);
@@ -75,7 +75,7 @@ void	init_vars(t_data *data, t_player *player)
 	data->colorg = 0x662b04;
 	data->tile_size = 100;
 	data->height = 900;
-	data->width = 950;
+	data->width = 1100;
 }
 
 int	main(int ac, char **av)
@@ -86,16 +86,17 @@ int	main(int ac, char **av)
 	t_player	*player;
 
 	char *map[MAP_SIZE] = {
-		"1111111111",
-		"1000P00001",
-		"1011111101",
-		"1000000101",
-		"1010110101",
-		"1010000101",
-		"1011111101",
-		"1000000001",
-		"1001110001",
-		"1111111111"
+		"11111111111",
+		"1000P000001",
+		"10111111001",
+		"10000001001",
+		"10101101001",
+		"10100001001",
+		"10111111001",
+		"10000000001",
+		"10011100001",
+		"10000000101",
+		"11111111111"
 	};
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 13:50:25 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:32:47 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
     wall_height = draw_end - draw_start;
     step = data->tex->tex_height / wall_height;
     tex_pos = (draw_start - data->height / 2 + wall_height / 2) * step;
-
+    
     y = draw_start;
     while (y <= draw_end)
     {
         tex_y = (int)tex_pos;
         color = *(unsigned int *)(data->tex->texture_addr +
-                    tex_y * data->tex->sizel +
-                    tex_x * (data->tex->bpp / 8));
+            tex_y * data->tex->sizel +
+            tex_x * (data->tex->bpp / 8));
         my_mlx_pixel_put(data, ray_indx, y, color);
         tex_pos += step;
         y++;
@@ -115,6 +115,7 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     wall_height = (int)(projection_plane_d / player->distance);
     player->draw_start = (data->height / 2.0) - (wall_height / 2.0);
     player->draw_end = (data->height / 2.0) + (wall_height / 2.0);
+    //drawi gha flhodo dyal screen
     if (player->draw_start < 0)
         player->draw_start = 0;
     if (player->draw_end >= data->height)
