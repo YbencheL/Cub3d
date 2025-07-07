@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 19:41:13 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:17:40 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,19 @@ void selecting_texture_ns(t_data *data, t_player *player, t_tex *tex)
 void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
 {
     int tex_x;
-    double wall_height;
     double step;
     double tex_pos;
     double y;
     int tex_y;
     int color;
-    
-	if (player->vertical)
-		selecting_texture_we(data, player, data->tex);
-	else
-		selecting_texture_ns(data, player, data->tex);
+
+    if (player->vertical)
+        selecting_texture_we(data, player, data->tex);
+    else
+        selecting_texture_ns(data, player, data->tex);
     tex_x = (int)(wall_x * data->tex->tex_width);
-    wall_height = player->draw_end - player->draw_start;
-    step = data->tex->tex_height / wall_height;
-    tex_pos = (player->draw_start - data->height / 2 + wall_height / 2) * step;
+    step = (double)data->tex->tex_height / player->true_wall_height;
+    tex_pos = (player->draw_start - data->height / 2 + player->true_wall_height / 2) * step;
     y = player->draw_start;
     while (y <= player->draw_end)
     {
@@ -92,12 +90,12 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
     }
 }
 
+
 void casting_walls(t_data *data, t_player *player, int ray_indx)
 {
     double dx;
     double dy;
     double projection_plane_d;
-    int wall_height;
     double y;
     double wall_x;
 
@@ -105,9 +103,9 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     dy = player->hity - player->posy;
     player->distance = sqrt(dx * dx + dy * dy) * cos(player->ray_angle - player->player_angle);
     projection_plane_d = (data->width / 2.0) / tan(player->fov / 2.0);
-    wall_height = (int)(projection_plane_d / player->distance);
-    player->draw_start = (data->height / 2.0) - (wall_height / 2.0);
-    player->draw_end = (data->height / 2.0) + (wall_height / 2.0);
+    player->true_wall_height = (int)(projection_plane_d / player->distance);
+    player->draw_start = (data->height / 2.0) - (player->true_wall_height / 2.0);
+    player->draw_end = (data->height / 2.0) + (player->true_wall_height / 2.0);
     //drawi gha flhodo dyal screen
     if (player->draw_start < 0)
         player->draw_start = 0;

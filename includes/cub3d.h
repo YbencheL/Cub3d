@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 19:35:13 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:17:12 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_player
     double  draw_end;
     double  distance;
     int     vertical;
+    int     true_wall_height;
 } t_player;
 
 typedef struct s_tex
