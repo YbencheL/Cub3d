@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 19:05:25 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 19:41:13 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void selecting_texture_ns(t_data *data, t_player *player, t_tex *tex)
 void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
 {
     int tex_x;
-    double draw_start;
-    double draw_end;
     double wall_height;
     double step;
     double tex_pos;
@@ -78,16 +76,11 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
 	else
 		selecting_texture_ns(data, player, data->tex);
     tex_x = (int)(wall_x * data->tex->tex_width);
-    draw_start = player->draw_start;
-    draw_end = player->draw_end;
-    if (draw_start < 0) draw_start = 0;
-    if (draw_end >= data->height) draw_end = data->height - 1;
-    wall_height = draw_end - draw_start;
+    wall_height = player->draw_end - player->draw_start;
     step = data->tex->tex_height / wall_height;
-    tex_pos = (draw_start - data->height / 2 + wall_height / 2) * step;
-    
-    y = draw_start;
-    while (y <= draw_end)
+    tex_pos = (player->draw_start - data->height / 2 + wall_height / 2) * step;
+    y = player->draw_start;
+    while (y <= player->draw_end)
     {
         tex_y = (int)tex_pos;
         color = *(unsigned int *)(data->tex->texture_addr +
