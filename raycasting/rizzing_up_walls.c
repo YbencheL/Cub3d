@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 20:26:01 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:28:34 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,13 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
     else
         selecting_texture_ns(data, player, data->tex);
     tex_x = (int)(wall_x * data->tex->tex_width);
-    if (tex_x < 0)
-        tex_x = 0;
     step = (double)data->tex->tex_height / player->true_wall_height;
     tex_pos = (player->draw_start - data->height / 2 + player->true_wall_height / 2) * step;
     y = player->draw_start;
     while (y <= player->draw_end)
     {
         tex_y = (int)tex_pos;
+        //previntiw segfault
         if (tex_y < 0)
             tex_y = 0;
         color = *(unsigned int *)(data->tex->texture_addr +
