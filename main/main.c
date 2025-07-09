@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 19:03:40 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/08 18:02:39 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	init_textures(t_data *data)
 			&data->north.width, &data->north.height);
 	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
 			&data->north.sizel, &data->north.indian);
-	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
+	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/2.xpm",
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
-	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
+	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/1.xpm",
 			&data->west.width, &data->west.height);
 	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
 			&data->west.sizel, &data->west.indian);
@@ -74,8 +74,8 @@ void	init_vars(t_data *data, t_player *player)
 	data->colora = 0x000000;
 	data->colorg = 0x662b04;
 	data->tile_size = 100;
-	data->height = 900;
-	data->width = 1100;
+	data->height = 800;
+	data->width = 1000;
 }
 
 int	main(int ac, char **av)

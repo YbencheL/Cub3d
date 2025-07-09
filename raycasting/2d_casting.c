@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/06 10:11:28 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:08:33 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 static void	set_dda_delta(t_player *player, t_dda *dda)
 {
     // delta hiya distance li khas lplayer ytravl bash ycrossi 1 vertical or horizontal line
-	if (player->raydirX == 0)
+	if (player->raydirx == 0)
 		dda->delta_x = 1e30; // to not make it 0 cause 0 will cause to stay allways in one line
 	else
-		dda->delta_x = fabs(1.0 / player->raydirX);
-	if (player->raydirY == 0)
+		dda->delta_x = fabs(1.0 / player->raydirx);
+	if (player->raydiry == 0)
 		dda->delta_y = 1e30;
 	else
-		dda->delta_y = fabs(1.0 / player->raydirY);
+		dda->delta_y = fabs(1.0 / player->raydiry);
 }
 
 static void	set_dda_stepx_sx(t_player *player, t_dda *dda)
 {
     // step x hiya shm itijah l coordinants dyal lmap ghaymsho fih bash ydkhlo fnshi grid
     // side hiya distance li ghaymshi fiha lplayer bash ydkhl f next gridline x wla y
-	if (player->raydirX < 0)
+	if (player->raydirx < 0)
 	{
 		dda->step_x = -1;
 		dda->side_x = (player->posx - dda->map_x) * dda->delta_x;
@@ -43,7 +43,7 @@ static void	set_dda_stepx_sx(t_player *player, t_dda *dda)
 
 static void	set_dda_stepy_sy(t_player *player, t_dda *dda)
 {
-	if (player->raydirY < 0)
+	if (player->raydiry < 0)
 	{
 		dda->step_y = -1;
 		dda->side_y = (player->posy - dda->map_y) * dda->delta_y;
@@ -72,14 +72,14 @@ static void	store_hit_info(t_player *player, t_dda *dda)
 	if (dda->side == 0)
 	{
 		// shrh f tldraw but ila bghiti t+is wahd lwall w line dyal is more vertical you need to move horizontaly
-		player->hitx = player->posx + (dda->side_x - dda->delta_x) * player->raydirX;
-		player->hity = player->posy + (dda->side_x - dda->delta_x) * player->raydirY;
+		player->hitx = player->posx + (dda->side_x - dda->delta_x) * player->raydirx;
+		player->hity = player->posy + (dda->side_x - dda->delta_x) * player->raydiry;
 		player->vertical = 1;
 	}
 	else
 	{
-		player->hitx = player->posx + (dda->side_y - dda->delta_y) * player->raydirX;
-		player->hity = player->posy + (dda->side_y - dda->delta_y) * player->raydirY;
+		player->hitx = player->posx + (dda->side_y - dda->delta_y) * player->raydirx;
+		player->hity = player->posy + (dda->side_y - dda->delta_y) * player->raydiry;
 		player->vertical = 0;
 	}
 }
@@ -129,11 +129,11 @@ void casting_rays(t_data *data, t_player *player)
         player->ray_angle = player->player_angle - (player->fov / 2.0)
             + (player->fov * r) / (data->width);
 
-        player->raydirX = cos(player->ray_angle);
-        player->raydirY = sin(player->ray_angle);
+        player->raydirx = cos(player->ray_angle);
+        player->raydiry = sin(player->ray_angle);
 
-        player->rayX = data->player->posx;
-        player->rayY = data->player->posy;
+        player->rayx = data->player->posx;
+        player->rayy = data->player->posy;
 
         if (rendering_lines(data, player))
             casting_walls(data, player, r);

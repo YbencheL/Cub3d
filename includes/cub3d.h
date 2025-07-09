@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 20:17:12 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:07:56 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ typedef struct s_player
     double  fov;
     double  ray_angle;
     double  player_angle;
-    double  raydirX;
-    double  raydirY;
-    double  rayX;
-    double  rayY;
+    double  raydirx;
+    double  raydiry;
+    double  rayx;
+    double  rayy;
     double  step_size;
     int     max_steps;
-    int     drawX;
-    int     drawY;
+    int     drawx;
+    int     drawy;
     int     mapx;
     int     mapy;
     double  hitx;
@@ -105,7 +105,7 @@ typedef struct s_player
     double  draw_end;
     double  distance;
     int     vertical;
-    int     true_wall_height;
+    int     wall_height;
 } t_player;
 
 typedef struct s_tex

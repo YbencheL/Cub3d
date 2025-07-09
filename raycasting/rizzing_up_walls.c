@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/07 20:28:34 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:07:22 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int shade_color(int base_color, double distance)
 
 void selecting_texture_we(t_data *data, t_player *player, t_tex *tex)
 {
-    if (player->vertical && player->raydirX < 0) // WEST wall
+    if (player->vertical && player->raydirx < 0) // WEST wall
     {
         tex->texture_addr = data->west.addr;
         tex->tex_width = data->west.width;
@@ -31,7 +31,7 @@ void selecting_texture_we(t_data *data, t_player *player, t_tex *tex)
         tex->sizel = data->west.sizel;
         tex->bpp = data->west.bbq;
     }
-    else if (player->vertical && player->raydirX >= 0) // EAST wall
+    else if (player->vertical && player->raydirx >= 0) // EAST wall
     {
         tex->texture_addr = data->east.addr;
         tex->tex_width = data->east.width;
@@ -43,7 +43,7 @@ void selecting_texture_we(t_data *data, t_player *player, t_tex *tex)
 
 void selecting_texture_ns(t_data *data, t_player *player, t_tex *tex)
 {
-    if (!player->vertical && player->raydirY < 0) // NORTH wall
+    if (!player->vertical && player->raydiry < 0) // NORTH wall
     {
         tex->texture_addr = data->north.addr;
         tex->tex_width = data->north.width;
@@ -75,8 +75,8 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
     else
         selecting_texture_ns(data, player, data->tex);
     tex_x = (int)(wall_x * data->tex->tex_width);
-    step = (double)data->tex->tex_height / player->true_wall_height;
-    tex_pos = (player->draw_start - data->height / 2 + player->true_wall_height / 2) * step;
+    step = (double)data->tex->tex_height / player->wall_height;
+    tex_pos = (player->draw_start - data->height / 2 + player->wall_height / 2) * step;
     y = player->draw_start;
     while (y <= player->draw_end)
     {
@@ -106,9 +106,9 @@ void casting_walls(t_data *data, t_player *player, int ray_indx)
     dy = player->hity - player->posy;
     player->distance = sqrt(dx * dx + dy * dy) * cos(player->ray_angle - player->player_angle);
     projection_plane_d = (data->width / 2.0) / tan(player->fov / 2.0);
-    player->true_wall_height = (int)(projection_plane_d / player->distance);
-    player->draw_start = (data->height / 2.0) - (player->true_wall_height / 2.0);
-    player->draw_end = (data->height / 2.0) + (player->true_wall_height / 2.0);
+    player->wall_height = (int)(projection_plane_d / player->distance);
+    player->draw_start = (data->height / 2.0) - (player->wall_height / 2.0);
+    player->draw_end = (data->height / 2.0) + (player->wall_height / 2.0);
     //drawi gha flhodo dyal screen
     if (player->draw_start < 0)
         player->draw_start = 0;
