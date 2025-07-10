@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/08 18:02:39 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:52:36 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_textures(t_data *data)
 			&data->north.width, &data->north.height);
 	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
 			&data->north.sizel, &data->north.indian);
-	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/2.xpm",
+	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/east.xpm",
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
@@ -86,17 +86,16 @@ int	main(int ac, char **av)
 	t_player	*player;
 
 	char *map[MAP_SIZE] = {
-		"11111111111",
-		"1000P000001",
-		"10111111001",
-		"10000001001",
-		"10101101001",
-		"10100001001",
-		"10111111001",
-		"10000000001",
-		"10011100001",
-		"10000000101",
-		"11111111111"
+		"111111111",
+		"1000P0001",
+		"101111111",
+		"100000011",
+		"101011011",
+		"101000011",
+		"101111111",
+		"100000001",
+		"100111001",
+		"111111111"
 	};
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));

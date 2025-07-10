@@ -6,20 +6,11 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/09 18:07:22 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:54:59 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int shade_color(int base_color, double distance)
-{
-    double factor = 1.0 / (1.0 + distance * 0.1);
-    int r = ((base_color >> 16) & 0xFF) * factor;
-    int g = ((base_color >> 8) & 0xFF) * factor;
-    int b = (base_color & 0xFF) * factor;
-    return (r << 16) | (g << 8) | b;
-}
 
 void selecting_texture_we(t_data *data, t_player *player, t_tex *tex)
 {

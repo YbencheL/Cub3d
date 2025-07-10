@@ -2,7 +2,8 @@
     "files.associations": {
         "cub3d.h": "c",
         "iterator": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "mlx.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "extensions.ignoreRecommendations": true,
