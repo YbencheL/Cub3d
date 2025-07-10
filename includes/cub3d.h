@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 11:50:52 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:11:33 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,6 @@ void			setup_h(t_data *data);
 int				close_program(t_data *data);
 void			move_player(t_player *player, double dx, double dy, char **map);
 void			rotate_player(t_data *data, double angle, char **map);
-
-//------------------main----------------------------
-void			pixel(t_data *data, char **map);
-void			charachter(t_data *data);
 
 //------------------utils---------------------------
 int				redraw(t_data *data);
