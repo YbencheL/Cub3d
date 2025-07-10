@@ -6,12 +6,11 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 11:24:08 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:10:04 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include "mlx.h"
 
 int     close_program(t_data *data)
 {
