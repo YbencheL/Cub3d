@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:29:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 11:40:27 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:01:51 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	set_dda_delta(t_player *player, t_dda *dda)
 {
     // delta hiya distance li khas lplayer ytravl bash ycrossi 1 vertical or horizontal line
 	if (player->raydirx == 0)
-		dda->delta_x = 0; // to not make it 0 cause 0 will cause the ray to stay allways in one line
+		dda->delta_x = 1e30; // to not make it 0 cause 0 will cause the ray to stay allways in one line
 	else
 		dda->delta_x = fabs(1.0 / player->raydirx);
 	if (player->raydiry == 0)
-		dda->delta_y = 0;
+		dda->delta_y = 1e30;
 	else
 		dda->delta_y = fabs(1.0 / player->raydiry);
 }
