@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 17:09:31 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/12 14:08:49 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ void	player_pos(t_player *player, char **map)
 
 void	init_textures(t_data *data)
 {
-	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
+	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/spongay.xpm",
 			&data->north.width, &data->north.height);
 	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
 			&data->north.sizel, &data->north.indian);
-	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/east.xpm",
+	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/spongay.xpm",
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
-	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/1.xpm",
+	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/gaybob.xpm",
 			&data->west.width, &data->west.height);
 	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
 			&data->west.sizel, &data->west.indian);
-	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
+	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/gaybob.xpm",
 			&data->east.width, &data->east.height);
 	data->east.addr = mlx_get_data_addr(data->east.img, &data->east.bbq,
 			&data->east.sizel, &data->east.indian);
@@ -105,7 +105,7 @@ int	main(int ac, char **av)
 	init_vars(data, player);
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (1);
+	return (1);
 	init_textures(data);
 	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
 	if (!data->win)
