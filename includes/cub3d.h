@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 17:09:42 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:35:11 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct s_player
 	double		posy;
 	double		dirx;
 	double		diry;
-	double		planey;
 	double		fov;
 	double		ray_angle;
 	double		player_angle;
@@ -87,8 +86,6 @@ typedef struct s_player
 	double		raydiry;
 	double		rayx;
 	double		rayy;
-	double		step_size;
-	int			max_steps;
 	int			drawx;
 	int			drawy;
 	int			mapx;
@@ -115,7 +112,6 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	void		*win1;
 	void		*img;
 	char		*addr;
 	int			height;
@@ -123,8 +119,6 @@ typedef struct s_data
 	int			bbq;
 	int			indian;
 	int			sizel;
-	int			offset_x;
-	int			offset_y;
 	int			colors;
 	int			colorg;
 	char		**map;
