@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 15:09:41 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:09:39 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	init_vars(t_data *data, t_player *player)
 	player->player_angle = 3.0 * M_PI / 2.0;
 	player->dirx = cos(player->player_angle);
 	player->diry = sin(player->player_angle);
-	player->planex = -player->diry * 0.33;
-	player->planey = player->diry * 0.33;
 	data->img = NULL;
 	data->addr = NULL;
 	data->colors = 0x05cdf8;

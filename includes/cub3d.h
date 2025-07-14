@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/13 13:34:51 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:09:42 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct s_player
 	double		posy;
 	double		dirx;
 	double		diry;
-	double		planex;
 	double		planey;
 	double		fov;
 	double		ray_angle;
