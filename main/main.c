@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/12 14:08:49 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:06:31 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ void	player_pos(t_player *player, char **map)
 
 void	init_textures(t_data *data)
 {
-	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/spongay.xpm",
+	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
 			&data->north.width, &data->north.height);
 	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
 			&data->north.sizel, &data->north.indian);
-	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/spongay.xpm",
+	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
-	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/gaybob.xpm",
+	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
 			&data->west.width, &data->west.height);
 	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
 			&data->west.sizel, &data->west.indian);
-	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/gaybob.xpm",
+	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/east.xpm",
 			&data->east.width, &data->east.height);
 	data->east.addr = mlx_get_data_addr(data->east.img, &data->east.bbq,
 			&data->east.sizel, &data->east.indian);
@@ -71,11 +71,9 @@ void	init_vars(t_data *data, t_player *player)
 	data->img = NULL;
 	data->addr = NULL;
 	data->colors = 0x05cdf8;
-	data->colora = 0x000000;
 	data->colorg = 0x662b04;
-	data->tile_size = 100;
-	data->height = 800;
-	data->width = 1000;
+	data->height = 1000;
+	data->width = 1400;
 }
 
 int	main(int ac, char **av)

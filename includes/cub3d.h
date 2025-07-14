@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 17:11:33 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/13 13:34:51 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,7 @@ typedef struct s_data
 	int			offset_x;
 	int			offset_y;
 	int			colors;
-	int			colora;
 	int			colorg;
-	int			tile_size;
 	char		**map;
 	int			key_states[NUM_KEYS];
 	t_player	*player;

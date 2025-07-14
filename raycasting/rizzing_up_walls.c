@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 11:57:03 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:01:25 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void selecting_texture_ns(t_data *data, t_player *player, t_tex *tex)
         tex->sizel = data->north.sizel;
         tex->bpp = data->north.bbq;
     }
-    else // SOUTH wall
+    else if (!player->vertical && player->raydiry >= 0) // SOUTH wall
     {
         tex->texture_addr = data->south.addr;
         tex->tex_width = data->south.width;

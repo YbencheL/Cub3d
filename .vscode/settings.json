@@ -3,7 +3,8 @@
         "cub3d.h": "c",
         "iterator": "c",
         "fcntl.h": "c",
-        "mlx.h": "c"
+        "mlx.h": "c",
+        "mlx_int.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "extensions.ignoreRecommendations": true,

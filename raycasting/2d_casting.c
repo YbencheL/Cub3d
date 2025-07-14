@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 11:52:59 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:32:18 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,36 @@ static void	store_hit_info(t_player *player, t_dda *dda)
 
 	if (dda->side == 0)
 	{
-		// shrh f tldraw but ila bghiti t+is wahd lwall w line dyal is more vertical you need to move horizontaly
-		player->hitx = player->posx + (dda->side_x - dda->delta_x) * player->raydirx;
-		player->hity = player->posy + (dda->side_x - dda->delta_x) * player->raydiry;
+		// ila bghiti thiti wahd lwall w line dyalk is more vertical you need to move horizontaly
+		player->hitx = player->posx + (dda->side_x - dda->delta_x)
+			* player->raydirx;
+		player->hity = player->posy + (dda->side_x - dda->delta_x)
+			* player->raydiry;
 		player->vertical = 1;
 	}
 	else
 	{
-		player->hitx = player->posx + (dda->side_y - dda->delta_y) * player->raydirx;
-		player->hity = player->posy + (dda->side_y - dda->delta_y) * player->raydiry;
+		player->hitx = player->posx + (dda->side_y - dda->delta_y)
+			* player->raydirx;
+		player->hity = player->posy + (dda->side_y - dda->delta_y)
+			* player->raydiry;
 		player->vertical = 0;
+	}
+}
+
+void	dda_side_n_step(t_dda *dda)
+{
+	if (dda->side_x < dda->side_y)
+	{
+		dda->side_x += dda->delta_x;
+		dda->map_x += dda->step_x;
+		dda->side = 0;
+	}
+	else
+	{
+		dda->side_y += dda->delta_y;
+		dda->map_y += dda->step_y;
+		dda->side = 1;
 	}
 }
 
@@ -42,21 +62,10 @@ int	rendering_lines(t_data *data, t_player *player)
 	while (!hit)
 	{
 		// if we travle more towards the vertical lines
-		if (dda.side_x < dda.side_y)
-		{
-			dda.side_x += dda.delta_x;
-			dda.map_x += dda.step_x;
-			dda.side = 0;
-		}
-		else
-		{
-			dda.side_y += dda.delta_y;
-			dda.map_y += dda.step_y;
-			dda.side = 1;
-		}
+		dda_side_n_step(&dda);
 		if (dda.map_x < 0 || dda.map_x >= MAP_SIZE
 			|| dda.map_y < 0 || dda.map_y >= MAP_SIZE)
-			break;
+			break ;
 		if (data->map[dda.map_y][dda.map_x] == '1')
 			hit = 1;
 	}
@@ -67,8 +76,9 @@ int	rendering_lines(t_data *data, t_player *player)
 
 void casting_rays(t_data *data, t_player *player)
 {
-    int r = 0;
-    
+	int	r;
+
+	r = 0;
 	// using arc tan of dirx and y covertes the values into a radiant angle
     player->player_angle = atan2(data->player->diry, data->player->dirx);
     while (r < data->width)

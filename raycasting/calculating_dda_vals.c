@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:29:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 12:01:51 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:18:16 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	set_dda_delta(t_player *player, t_dda *dda)
 
 void	set_dda_stepx_sx(t_player *player, t_dda *dda)
 {
-    // step x hiya shm itijah l coordinants dyal lmap ghaymsho fih bash ydkhlo fnshi grid
-    // side hiya distance li ghaymshi fiha lplayer bash ydkhl f next gridline x wla y
+    // step x hiya shm itijah l coordinants dyal lmap ghaymsho fih bash ydkhlo fshi grid
+    // side hiya distance li ghaymshi fiha player bash ydkhl f next gridline x wla y
 	if (player->raydirx < 0)
 	{
 		dda->step_x = -1;
