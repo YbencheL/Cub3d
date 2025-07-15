@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/10 17:10:04 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 11:05:30 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int     close_program(t_data *data)
 
 void    move_player(t_player *player, double dx, double dy, char **map)
 {
-    double new_x = player->posx + dx;
-    double new_y = player->posy + dy;
-    int map_x = (int)new_x;
-    int map_y = (int)new_y;
+    int     map_x;
+    int     map_y;
+
+    map_x = (int)(player->posx + dx);
+    map_y = (int)(player->posy + dy);
     if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
         map[map_y][map_x] != '1') {
         player->posx += dx;
@@ -53,8 +54,11 @@ void    move_player(t_player *player, double dx, double dy, char **map)
 
 void    rotate_player(t_data *data, double angle, char **map)
 {
-    int map_x = (int)data->player->posx;
-    int map_y = (int)data->player->posy;
+    int map_x;
+    int map_y;
+
+    map_x = (int)data->player->posx;
+    map_y = (int)data->player->posy;
     if (map_x >= 0 && map_x < MAP_SIZE && map_y >= 0 && map_y < MAP_SIZE && 
         map[map_y][map_x] != '1')
     {
@@ -86,15 +90,15 @@ void    handle_input(t_data *data)
 {
     double speed;
 
-    speed = 0.02;
+    speed = 0.018;
     if (data->key_states[65307])
         close_program(data);
     if (data->key_states[65361])
-        rotate_player(data, -0.038, data->map);
+        rotate_player(data, -0.03, data->map);
     if (data->key_states[119])
         move_player(data->player, data->player->dirx * speed, data->player->diry * speed, data->map);
     if (data->key_states[65363])
-        rotate_player(data, 0.038, data->map);
+        rotate_player(data, 0.03, data->map);
     if (data->key_states[115])
         move_player(data->player, -data->player->dirx * speed, -data->player->diry * speed, data->map);
     if (data->key_states[100])

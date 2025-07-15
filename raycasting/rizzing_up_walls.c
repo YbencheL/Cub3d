@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 14:01:25 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 11:04:12 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ void textures_logic(t_data *data, t_player *player, int ray_indx, double wall_x)
         //previntiw segfault
         if (tex_y < 0)
             tex_y = 0;
-        color = *(unsigned int *)(data->tex->texture_addr +
-            tex_y * data->tex->sizel +
-            tex_x * (data->tex->bpp / 8));
+        color = *(unsigned int *)(data->tex->texture_addr + tex_y
+            * data->tex->sizel + tex_x * (data->tex->bpp / 8));
         my_mlx_pixel_put(data, ray_indx, y, color);
         tex_pos += step;
         y++;

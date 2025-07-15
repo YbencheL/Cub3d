@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 14:32:18 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 11:02:05 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,8 @@ void casting_rays(t_data *data, t_player *player)
 		// from far left to far right
         player->ray_angle = player->player_angle - (player->fov / 2.0)
             + (player->fov * r) / (data->width);
-
         player->raydirx = cos(player->ray_angle);
         player->raydiry = sin(player->ray_angle);
-
         player->rayx = data->player->posx;
         player->rayy = data->player->posy;
 

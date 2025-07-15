@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 17:09:39 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 11:04:28 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	init_vars(t_data *data, t_player *player)
 	data->addr = NULL;
 	data->colors = 0x05cdf8;
 	data->colorg = 0x662b04;
-	data->height = 1000;
-	data->width = 1400;
+	data->height = 800;
+	data->width = 1200;
 }
 
 int	main(int ac, char **av)
