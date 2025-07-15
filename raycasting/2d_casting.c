@@ -6,13 +6,13 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/15 11:02:05 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:41:12 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static void	store_hit_info(t_player *player, t_dda *dda)
+static void	hit_info(t_player *player, t_dda *dda)
 {
 	player->mapx = dda->map_x;
 	player->mapy = dda->map_y;
@@ -70,7 +70,7 @@ int	rendering_lines(t_data *data, t_player *player)
 			hit = 1;
 	}
 	if (hit)
-		store_hit_info(player, &dda);
+		hit_info(player, &dda);
 	return (hit);
 }
 
@@ -88,8 +88,6 @@ void casting_rays(t_data *data, t_player *player)
             + (player->fov * r) / (data->width);
         player->raydirx = cos(player->ray_angle);
         player->raydiry = sin(player->ray_angle);
-        player->rayx = data->player->posx;
-        player->rayy = data->player->posy;
 
         if (rendering_lines(data, player))
             casting_walls(data, player, r);

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:29:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 16:57:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:25:30 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	set_dda_delta(t_player *player, t_dda *dda)
 		dda->delta_y = fabs(1.0 / player->raydiry);
 }
 
-void	set_dda_stepx_sx(t_player *player, t_dda *dda)
+void	set_dda_stepx_sidex(t_player *player, t_dda *dda)
 {
     // step x hiya shm itijah l coordinants dyal lmap ghaymsho fih bash ydkhlo fshi grid
     // side hiya distance li ghaymshi fiha player bash ydkhl f next gridline x wla y
@@ -41,7 +41,7 @@ void	set_dda_stepx_sx(t_player *player, t_dda *dda)
 	}
 }
 
-void	set_dda_stepy_sy(t_player *player, t_dda *dda)
+void	set_dda_stepy_sidey(t_player *player, t_dda *dda)
 {
 	if (player->raydiry < 0)
 	{
@@ -60,6 +60,6 @@ void	init_dda_vars(t_player *player, t_dda *dda)
 	dda->map_x = (int)player->posx;
 	dda->map_y = (int)player->posy;
 	set_dda_delta(player, dda);
-	set_dda_stepx_sx(player, dda);
-	set_dda_stepy_sy(player, dda);
+	set_dda_stepx_sidex(player, dda);
+	set_dda_stepy_sidey(player, dda);
 }

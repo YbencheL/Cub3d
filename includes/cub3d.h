@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/14 17:35:11 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:41:21 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,6 @@ typedef struct s_player
 	double		player_angle;
 	double		raydirx;
 	double		raydiry;
-	double		rayx;
-	double		rayy;
-	int			drawx;
-	int			drawy;
 	int			mapx;
 	int			mapy;
 	double		hitx;
