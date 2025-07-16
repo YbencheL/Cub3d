@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/15 12:41:21 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:05:10 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ void			setup_h(t_data *data);
 int				close_program(t_data *data);
 void			move_player(t_player *player, double dx, double dy, char **map);
 void			rotate_player(t_data *data, double angle, char **map);
+int				key_press(int keycode, t_data *data);
+int				key_release(int keycode, t_data *data);
 
 //------------------utils---------------------------
 int				redraw(t_data *data);
@@ -141,7 +143,7 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 //------------------raycasting----------------------
 void			casting_rays(t_data *data, t_player *player);
 void			casting_walls(t_data *data, t_player *player, int ray_indx);
-void            init_dda_vars(t_player *player, t_dda *dda);
+void			init_dda_vars(t_player *player, t_dda *dda);
 
 //------------------parsing----------------------
 void			ft_parsing(t_cub *game, char *av);

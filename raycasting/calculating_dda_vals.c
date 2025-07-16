@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:29:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/15 12:25:30 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:00:32 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	set_dda_delta(t_player *player, t_dda *dda)
 {
-    // delta hiya distance li khas rays ytravl bash ymoviw mn one virtical or horizontal gridline to another
 	if (player->raydirx == 0)
-		dda->delta_x = 1e30; // to not make it 0 cause 0 will cause the ray to stay allways in one line
+		dda->delta_x = 1e30;
 	else
 		dda->delta_x = fabs(1.0 / player->raydirx);
 	if (player->raydiry == 0)
@@ -27,8 +26,6 @@ void	set_dda_delta(t_player *player, t_dda *dda)
 
 void	set_dda_stepx_sidex(t_player *player, t_dda *dda)
 {
-    // step x hiya shm itijah l coordinants dyal lmap ghaymsho fih bash ydkhlo fshi grid
-    // side hiya distance li ghaymshi fiha player bash ydkhl f next gridline x wla y
 	if (player->raydirx < 0)
 	{
 		dda->step_x = -1;
