@@ -1,5 +1,16 @@
-#include "../includes/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_file.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/17 23:03:36 by mohel-kh          #+#    #+#             */
+/*   Updated: 2025/07/17 23:03:38 by mohel-kh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../includes/cub3d.h"
 
 void read_file(t_cub *game, char *av)
 {
@@ -44,7 +55,8 @@ int stor_texture(t_cub *game)
         else if (conut_split(new_line) != 2)
         {
             perror("ERROR");
-            exit(1);
+            free_split(new_line);
+            ft_free(game, 1);
         }
         else if (!game->no && ft_strncmp(new_line[0], "NO", 2) == 0)
             game->no = ft_strdup(new_line[1]);
@@ -61,8 +73,10 @@ int stor_texture(t_cub *game)
         else
         {
             perror("ERROR");
-            exit(1);
+            free_split(new_line);
+            ft_free(game, 1);
         }
+        free_split(new_line);
         if (game->c && game->f && game->no && game->so && game->we && game->ea)
             break;
         l++;
@@ -83,4 +97,6 @@ void init_struct(t_cub *file)
     file->d = 0;
     file->row = 0;
     file->col = 0;
+    file->player_x = 0;
+    file->player_y = 0;
 }

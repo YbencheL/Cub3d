@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 11:24:10 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/17 23:03:58 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ typedef struct s_cub
 	char		**file;
 	char		**map;
 	char		**map_plus;
-	int			row;
-	int			col;
 	char		*no;
 	char		*so;
 	char		*we;
@@ -59,6 +57,12 @@ typedef struct s_cub
 	char		*f;
 	char		*c;
 	char		d;
+	int			row;
+	int			col;
+    int         player_x;
+    int         player_y;
+    int         f_color;
+    int         c_color;
 }				t_cub;
 
 typedef enum s_directions
@@ -169,5 +173,9 @@ void			run_flood_fill(t_cub *game);
 void			read_file(t_cub *game, char *av);
 int				stor_texture(t_cub *game);
 void			init_struct(t_cub *file);
+int				parse_rgb(char *str);
+int				is_number(char *str);
+void			free_split(char **arr);
+void			ft_free(t_cub *game, int n_exit);
 
 #endif

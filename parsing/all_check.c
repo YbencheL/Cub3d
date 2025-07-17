@@ -1,8 +1,20 @@
-#include "../includes/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   all_check.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/17 21:33:46 by mohel-kh          #+#    #+#             */
+/*   Updated: 2025/07/17 23:33:53 by mohel-kh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../includes/cub3d.h"
 
 void check_arg(int ac, char **av)
 {
+    char *argv;
     int len;
 
     if (ac != 2)
@@ -16,7 +28,7 @@ void check_arg(int ac, char **av)
         perror("ERROR");
         exit(1);
     }
-    char *argv = av[1];
+    argv = av[1];
     if (!ft_strnstr(argv + len - 4, ".cub", 4))
     {
         perror("ERROR");
@@ -40,7 +52,7 @@ void check_map_plus(t_cub *game)
             if (game->map_plus[0][i] == 'X')
             {
                 perror("ERROR");
-                exit(1);
+                ft_free(game, 1);
             }
             i++;
         }
@@ -53,7 +65,7 @@ void check_map_plus(t_cub *game)
             if (game->map_plus[i][0] == 'X' || game->map_plus[i][l -1] == 'X')
             {
                 perror("ERROR");
-                exit(1);
+                ft_free(game, 1);
             }
             i++;
         }
@@ -63,7 +75,7 @@ void check_map_plus(t_cub *game)
             if (game->map_plus[game->row - 1][i] == 'X')
             {
                 perror("ERROR");
-                exit(1);
+                ft_free(game, 1);
             }
             i++;
         }
@@ -81,7 +93,8 @@ int check_char(t_cub *game, int l)
         if (conut_split(map) == 0)
         {
             perror("ERROR NEWLINE");
-            exit(1);
+            free_split(map);
+            ft_free(game, 1);
         }
         i = 0;
         while (map[i])
@@ -99,19 +112,21 @@ int check_char(t_cub *game, int l)
                     else
                     {
                         perror("ERROR 10NSWE");
-                        exit(1);
+                        free_split(map);
+                        ft_free(game, 1);
                     }
                 }
                 a++;
             }
             i++;
         }
+        free_split(map);
         l++;
     }
     if (dr != 1)
     {
         perror("ERROR NSWE");
-        exit(1);
+        ft_free(game, 1);
     }
     return l;
 }
