@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 23:03:06 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/17 23:38:38 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/17 23:56:21 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,26 @@ int parse_rgb(char *str)
 	int		r, g, b;
     
 	split = ft_split_plus(str, ',');
-	if (conut_split(split) > 2)
+	if (conut_split(split) > 3)
+    {
+        free_split(split);
 		return (-1);
+    }
 
 	if (!is_number(split[0]) || !is_number(split[1]) || !is_number(split[2]))
+    {
+        free_split(split);
 		return (-1);
+    }
 
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+    {
+        free_split(split);
 		return (-1);
+    }
     free_split(split);
 	return ((r << 16) | (g << 8) | b);
 }

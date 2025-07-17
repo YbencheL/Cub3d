@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 23:36:12 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 00:00:11 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,66 +76,66 @@ void	init_vars(t_data *data, t_player *player)
 
 int	main(int ac, char **av)
 {
-	// (void)ac;
-	// (void)av;
-	// t_data		*data;
-	// t_player	*player;
+	(void)ac;
+	(void)av;
+	t_data		*data;
+	t_player	*player;
 
-	// char *map[MAP_SIZE] = {
-	// 	"111111111",
-	// 	"1000P0001",
-	// 	"101011111",
-	// 	"100000011",
-	// 	"101011011",
-	// 	"101000011",
-	// 	"101111111",
-	// 	"100000001",
-	// 	"100111001",
-	// 	"111111111"
-	// };
-	// data = malloc(sizeof(t_data));
-	// ft_memset(data, 0, sizeof(t_data));
-	// player = malloc(sizeof(t_player));
-	// data->tex = malloc(sizeof(t_tex));
-	// data->map = map;
-	// init_vars(data, player);
-	// data->mlx = mlx_init();
-	// if (!data->mlx)
-	// return (1);
-	// init_textures(data);
-	// data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
-	// if (!data->win)
-	// 	return (1);
-	// data->img = mlx_new_image(data->mlx, data->width, data->height);
-	// data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
-	// player_pos(player, map);
-	// casting_rays(data, data->player);
-	// mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
-	// setup_h(data);
-	// mlx_loop(data->mlx);
-	t_cub game;
-	check_arg(ac, av);
-	ft_parsing(&game, av[1]);
-	printf("NO        : %s\n", game.no);
-	printf("SO        : %s\n", game.so);
-	printf("WE        : %s\n", game.we);
-	printf("EA        : %s\n", game.ea);
-	printf("F         : %s\n", game.f);
-	printf("C         : %s\n", game.c);
-	printf("COL       : %d\n", game.col);
-	printf("ROW       : %d\n", game.row);
-	printf("F_COLOR   : %d\n", game.f_color);
-	printf("C_COLOR   : %d\n", game.c_color);
-	printf("PLAYER_X  : %d\n", game.player_x);
-	printf("PLAYER_Y  : %d\n", game.player_y);
-	printf("PLAYER    : %c\n", game.d);
-	int i = 0;
-	printf("________________________MAP________________________\n\n\n");
-	while (game.map[i])
-	{
-		printf("               %s\n", game.map[i]);
-		i++;
-	}
-	ft_free(&game, 0);
+	char *map[MAP_SIZE] = {
+		"111111111",
+		"1000P0001",
+		"101011111",
+		"100000011",
+		"101011011",
+		"101000011",
+		"101111111",
+		"100000001",
+		"100111001",
+		"111111111"
+	};
+	data = malloc(sizeof(t_data));
+	ft_memset(data, 0, sizeof(t_data));
+	player = malloc(sizeof(t_player));
+	data->tex = malloc(sizeof(t_tex));
+	data->map = map;
+	init_vars(data, player);
+	data->mlx = mlx_init();
+	if (!data->mlx)
+	return (1);
+	init_textures(data);
+	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
+	if (!data->win)
+		return (1);
+	data->img = mlx_new_image(data->mlx, data->width, data->height);
+	data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
+	player_pos(player, map);
+	casting_rays(data, data->player);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	setup_h(data);
+	mlx_loop(data->mlx);
+	// t_cub game;
+	// check_arg(ac, av);
+	// ft_parsing(&game, av[1]);
+	// printf("NO        : %s\n", game.no);
+	// printf("SO        : %s\n", game.so);
+	// printf("WE        : %s\n", game.we);
+	// printf("EA        : %s\n", game.ea);
+	// printf("F         : %s\n", game.f);
+	// printf("C         : %s\n", game.c);
+	// printf("COL       : %d\n", game.col);
+	// printf("ROW       : %d\n", game.row);
+	// printf("F_COLOR   : %d\n", game.f_color);
+	// printf("C_COLOR   : %d\n", game.c_color);
+	// printf("PLAYER_X  : %d\n", game.player_x);
+	// printf("PLAYER_Y  : %d\n", game.player_y);
+	// printf("PLAYER    : %c\n", game.d);
+	// int i = 0;
+	// printf("________________________MAP________________________\n\n\n");
+	// while (game.map[i])
+	// {
+	// 	printf("               %s\n", game.map[i]);
+	// 	i++;
+	// }
+	// ft_free(&game, 0);
 	return 0;
 }

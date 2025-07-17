@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 23:03:27 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/17 23:35:52 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/17 23:50:57 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void    ft_parsing(t_cub *game, char *av)
     conut_row(game, av);
     read_file(game, av);
     i = stor_texture(game);
+    if_check(game);
     i++;
     i = skip_newline(game, i);
     int l = i;

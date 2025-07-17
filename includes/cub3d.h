@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 23:03:58 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/17 23:50:45 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,6 @@ int				parse_rgb(char *str);
 int				is_number(char *str);
 void			free_split(char **arr);
 void			ft_free(t_cub *game, int n_exit);
+void    if_check(t_cub *game);
 
 #endif
