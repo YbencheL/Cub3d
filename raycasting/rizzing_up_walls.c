@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/16 18:01:11 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:48:13 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,40 @@ void	selecting_texture_ns(t_data *data, t_player *player, t_tex *tex)
 	}
 }
 
-void	textures_logic(t_data *data, t_player *player, int ray_indx,
-		double wall_x)
+void	tex_loop(t_player *player, t_texinfo *info, t_data *data, int ray_indx)
 {
-	int		tex_x;
-	double	step;
-	double	tex_pos;
 	double	y;
 	int		tex_y;
 	int		color;
+
+	y = player->draw_start;
+	while (y <= player->draw_end)
+	{
+		tex_y = (int)info->tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
+		color = *(unsigned int *)(data->tex->texture_addr + tex_y
+				* data->tex->sizel + info->tex_x * (data->tex->bpp / 8));
+		my_mlx_pixel_put(data, ray_indx, y, color);
+		info->tex_pos += info->step;
+		y++;
+	}
+}
+
+void	textures_logic(t_data *data, t_player *player, int ray_indx,
+		double wall_x)
+{
+	t_texinfo	info;
 
 	if (player->vertical)
 		selecting_texture_we(data, player, data->tex);
 	else
 		selecting_texture_ns(data, player, data->tex);
-	tex_x = (int)(wall_x * data->tex->tex_width);
-	step = (double)data->tex->tex_height / player->wall_height;
-	tex_pos = (player->draw_start - data->height / 2 + player->wall_height / 2)
-		* step;
-	y = player->draw_start;
-	while (y <= player->draw_end)
-	{
-		tex_y = (int)tex_pos;
-		if (tex_y < 0)
-			tex_y = 0;
-		color = *(unsigned int *)(data->tex->texture_addr + tex_y
-				* data->tex->sizel + tex_x * (data->tex->bpp / 8));
-		my_mlx_pixel_put(data, ray_indx, y, color);
-		tex_pos += step;
-		y++;
-	}
+	info.tex_x = (int)(wall_x * data->tex->tex_width);
+	info.step = (double)data->tex->tex_height / player->wall_height;
+	info.tex_pos = (player->draw_start - data->height / 2 + player->wall_height
+			/ 2) * info.step;
+	tex_loop(player, &info, data, ray_indx);
 }
 
 void	casting_walls(t_data *data, t_player *player, int ray_indx)

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/16 18:05:10 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/17 10:40:40 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct s_dda
 	int			step_y;
 	int			side;
 }				t_dda;
+
+typedef struct s_texinfo
+{
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+}				t_texinfo;
 
 typedef struct s_cub
 {
