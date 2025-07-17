@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 10:40:40 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:24:10 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,8 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			casting_rays(t_data *data, t_player *player);
 void			casting_walls(t_data *data, t_player *player, int ray_indx);
 void			init_dda_vars(t_player *player, t_dda *dda);
+void			textures_logic(t_data *data, t_player *player, int ray_indx,
+					double wall_x);
 
 //------------------parsing----------------------
 void			ft_parsing(t_cub *game, char *av);
