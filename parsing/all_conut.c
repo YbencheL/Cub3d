@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:33:55 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/17 21:33:57 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:15:35 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void conut_row(t_cub *game, char *av)
     close(fd);
     if (game->row == 0)
     {
-        perror("ERROR: MAP IS EMPTY");
+        ft_putendl_fd("ERROR: EMPTY MAP", 2);
         exit(1);
     }
 }

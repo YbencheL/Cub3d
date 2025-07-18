@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:33:46 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/17 23:33:53 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:14:32 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ void check_arg(int ac, char **av)
 
     if (ac != 2)
     {
-        perror("ERROR");
+        ft_putendl_fd("ERROR: INPUT PROBLEM", 2);
         exit(1);
     }
     len = ft_strlen(av[1]);
     if (len <= 4)
     {
-        perror("ERROR");
+        ft_putendl_fd("ERROR: INPUT PROBLEM", 2);
         exit(1);
     }
     argv = av[1];
     if (!ft_strnstr(argv + len - 4, ".cub", 4))
     {
-        perror("ERROR");
+        ft_putendl_fd("ERROR: INPUT PROBLEM", 2);
         exit(1);
     }
     if (ft_strnstr(argv + len - 5, "/", 1))
     {
-        perror("ERROR");
+        ft_putendl_fd("ERROR: INPUT PROBLEM", 2);
         exit(1);
     }
 }
@@ -51,7 +51,7 @@ void check_map_plus(t_cub *game)
         {
             if (game->map_plus[0][i] == 'X')
             {
-                perror("ERROR");
+                ft_putendl_fd("ERROR: INVALID MAP", 2);
                 ft_free(game, 1);
             }
             i++;
@@ -64,7 +64,7 @@ void check_map_plus(t_cub *game)
                 l++;
             if (game->map_plus[i][0] == 'X' || game->map_plus[i][l -1] == 'X')
             {
-                perror("ERROR");
+                ft_putendl_fd("ERROR: INVALID MAP", 2);
                 ft_free(game, 1);
             }
             i++;
@@ -74,7 +74,7 @@ void check_map_plus(t_cub *game)
         {
             if (game->map_plus[game->row - 1][i] == 'X')
             {
-                perror("ERROR");
+                ft_putendl_fd("ERROR: INVALID MAP", 2);
                 ft_free(game, 1);
             }
             i++;
@@ -92,7 +92,7 @@ int check_char(t_cub *game, int l)
         map = ft_split(game->file[l]);
         if (conut_split(map) == 0)
         {
-            perror("ERROR NEWLINE");
+            ft_putendl_fd("ERROR: NEWLINE", 2);
             free_split(map);
             ft_free(game, 1);
         }
@@ -111,7 +111,7 @@ int check_char(t_cub *game, int l)
                     }
                     else
                     {
-                        perror("ERROR 10NSWE");
+                        ft_putendl_fd("ERROR: INVALID CHAR", 2);
                         free_split(map);
                         ft_free(game, 1);
                     }
@@ -125,7 +125,7 @@ int check_char(t_cub *game, int l)
     }
     if (dr != 1)
     {
-        perror("ERROR NSWE");
+        ft_putendl_fd("ERROR: INVALID PLAYER", 2);
         ft_free(game, 1);
     }
     return l;

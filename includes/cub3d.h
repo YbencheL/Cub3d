@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 23:50:45 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:43:33 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,20 +163,21 @@ void			ft_parsing(t_cub *game, char *av);
 void			copy_map(t_cub *game, int i, int l);
 void			check_arg(int ac, char **av);
 void			check_map_plus(t_cub *game);
-int				check_char(t_cub *game, int l);
-int				conut_split(char **line);
+void    		free_split(char **arr);
+void    		ft_free(t_cub *game, int n_exit);
+void			if_check(t_cub *game);
+void			map_space(t_cub *game);
 void			conut_col(t_cub *game, int i);
 void			conut_row(t_cub *game, char *av);
-int				skip_newline(t_cub *game, int l);
 void			flood_fill(t_cub *game, int x, int y);
 void			run_flood_fill(t_cub *game);
 void			read_file(t_cub *game, char *av);
-int				stor_texture(t_cub *game);
 void			init_struct(t_cub *file);
-int				parse_rgb(char *str);
-int				is_number(char *str);
-void			free_split(char **arr);
-void			ft_free(t_cub *game, int n_exit);
-void    if_check(t_cub *game);
+int				check_char(t_cub *game, int l);
+int				conut_split(char **line);
+int				skip_newline(t_cub *game, int l);
+int				stor_texture(t_cub *game);
+int 			parse_rgb(char *str);
+int 			is_number(char *str);
 
 #endif

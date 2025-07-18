@@ -6,35 +6,11 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 23:03:27 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/17 23:50:57 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:37:16 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void    map_space(t_cub *game)
-{
-    int i;
-    int l;
-
-    i = 0;
-    while (game->map[i])
-    {
-        l = 0;
-        while (game->map[i][l])
-        {
-            if (game->map[i][l] == game->d)
-            {
-                game->player_x = i;
-                game->player_y = l;
-            }
-            if (game->map[i][l] == 32)
-                game->map[i][l] = '1';
-            l++;
-        }
-        i++;
-    }
-}
 
 void    ft_parsing(t_cub *game, char *av)
 {
@@ -60,6 +36,30 @@ void    ft_parsing(t_cub *game, char *av)
     run_flood_fill(game);
     map_space(game);
 }
+void    map_space(t_cub *game)
+{
+    int i;
+    int l;
+
+    i = 0;
+    while (game->map[i])
+    {
+        l = 0;
+        while (game->map[i][l])
+        {
+            if (game->map && game->map[i][l] == game->d)
+            {
+                game->player_x = i;
+                game->player_y = l;
+            }
+            if (game->map[i][l] == 32)
+                game->map[i][l] = '1';
+            l++;
+        }
+        i++;
+    }
+}
+
 void copy_map(t_cub *game, int i, int l)
 {
     int s;
@@ -75,6 +75,7 @@ void copy_map(t_cub *game, int i, int l)
             game->map_plus[l][s] = game->file[i][s];
             s++;
         }
+        game->map[l][s] = '\0';
         while (s < game->col - 1)
         {
             game->map_plus[l][s] = ' ';

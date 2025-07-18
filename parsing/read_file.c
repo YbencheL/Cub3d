@@ -6,7 +6,7 @@
 /*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 23:03:36 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/17 23:03:38 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 10:17:44 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int stor_texture(t_cub *game)
         }
         else if (conut_split(new_line) != 2)
         {
-            perror("ERROR");
+            ft_putendl_fd("ERROR: INVALID TEXTURES", 2);
             free_split(new_line);
             ft_free(game, 1);
         }
@@ -72,7 +72,7 @@ int stor_texture(t_cub *game)
             game->c = ft_strdup(new_line[1]);
         else
         {
-            perror("ERROR");
+            ft_putendl_fd("ERROR: INVALID TEXTURES", 2);
             free_split(new_line);
             ft_free(game, 1);
         }
