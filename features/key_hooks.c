@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 18:02:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 11:18:17 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:15:21 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	handle_input(t_data *data)
 	if (data->key_states[65361])
 		rotate_player(data, -0.015, data->map);
 	if (data->key_states[119])
-		move_player(data->player, data->player->dirx * speed, data->player->diry
+		move_player(data, data->player->dirx * speed, data->player->diry
 			* speed, data->map);
 	if (data->key_states[65363])
 		rotate_player(data, 0.015, data->map);
 	if (data->key_states[115])
-		move_player(data->player, -data->player->dirx * speed,
+		move_player(data, -data->player->dirx * speed,
 			-data->player->diry * speed, data->map);
 	if (data->key_states[100])
-		move_player(data->player, -data->player->diry * speed,
+		move_player(data, -data->player->diry * speed,
 			data->player->dirx * speed, data->map);
 	if (data->key_states[97])
-		move_player(data->player, data->player->diry * speed,
+		move_player(data, data->player->diry * speed,
 			-data->player->dirx * speed, data->map);
 }
 

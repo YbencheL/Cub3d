@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/18 10:43:33 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:16:14 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define MAP_SIZE 10
 # define NUM_KEYS 70000
 # define STEP_SIZE 0.01
 # define M_PI 3.14159265358979323846
@@ -104,6 +103,7 @@ typedef struct s_player
 	double		distance;
 	int			vertical;
 	int			wall_height;
+	t_cub			game;
 }				t_player;
 
 typedef struct s_tex
@@ -123,6 +123,8 @@ typedef struct s_data
 	char		*addr;
 	int			height;
 	int			width;
+	int			map_w;
+	int			map_h;
 	int			bbq;
 	int			indian;
 	int			sizel;
@@ -142,7 +144,7 @@ typedef struct s_data
 void			handle_input(t_data *data);
 void			setup_h(t_data *data);
 int				close_program(t_data *data);
-void			move_player(t_player *player, double dx, double dy, char **map);
+void			move_player(t_data *data, double dx, double dy, char **map);
 void			rotate_player(t_data *data, double angle, char **map);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);

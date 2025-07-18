@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/16 17:59:33 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:11:39 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	rendering_lines(t_data *data, t_player *player)
 	while (!hit)
 	{
 		dda_side_n_step(&dda);
-		if (dda.map_x < 0 || dda.map_x >= MAP_SIZE || dda.map_y < 0
-			|| dda.map_y >= MAP_SIZE)
+		if (dda.map_x < 0 || dda.map_x >= data->map_w || dda.map_y < 0
+			|| dda.map_y >= data->map_w)
 			break ;
 		if (data->map[dda.map_y][dda.map_x] == '1')
 			hit = 1;

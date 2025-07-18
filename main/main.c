@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/18 10:44:50 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:25:59 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	player_pos(t_player *player, char **map)
+void	player_pos(t_data *data, char **map)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	while (y < MAP_SIZE)
+	while (y < data->map_h)
 	{
 		x = 0;
-		while (x < MAP_SIZE)
+		while (x < data->map_w)
 		{
-			if (map[y][x] == 'P')
+			if (map[y][x] == 'N')
 			{
-				player->posx = (double)x + 0.5;
-				player->posy = (double)y + 0.5;
+				data->player->posx = (double)x + 0.5;
+				data->player->posy = (double)y + 0.5;
 				return ;
 			}
 			x++;
@@ -35,21 +35,21 @@ void	player_pos(t_player *player, char **map)
 	}
 }
 
-void	init_textures(t_data *data)
+void	init_textures(t_data *data, t_cub game)
 {
-	data->north.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
+	data->north.img = mlx_xpm_file_to_image(data->mlx, game.no,
 			&data->north.width, &data->north.height);
 	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
 			&data->north.sizel, &data->north.indian);
-	data->south.img = mlx_xpm_file_to_image(data->mlx, "textures/west.xpm",
+	data->south.img = mlx_xpm_file_to_image(data->mlx, game.we,
 			&data->south.width, &data->south.height);
 	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
 			&data->south.sizel, &data->south.indian);
-	data->west.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
+	data->west.img = mlx_xpm_file_to_image(data->mlx, game.so,
 			&data->west.width, &data->west.height);
 	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
 			&data->west.sizel, &data->west.indian);
-	data->east.img = mlx_xpm_file_to_image(data->mlx, "textures/north.xpm",
+	data->east.img = mlx_xpm_file_to_image(data->mlx, game.ea,
 			&data->east.width, &data->east.height);
 	data->east.addr = mlx_get_data_addr(data->east.img, &data->east.bbq,
 			&data->east.sizel, &data->east.indian);
@@ -81,41 +81,31 @@ int	main(int ac, char **av)
 	t_data		*data;
 	t_player	*player;
 
-	char *map[MAP_SIZE] = {
-		"111111111",
-		"1000P0001",
-		"101011111",
-		"100000011",
-		"101011011",
-		"101000011",
-		"101111111",
-		"100000001",
-		"100111001",
-		"111111111"
-	};
+	t_cub game;
+	check_arg(ac, av);
+	ft_parsing(&game, av[1]);
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));
 	player = malloc(sizeof(t_player));
 	data->tex = malloc(sizeof(t_tex));
-	data->map = map;
+	data->map = game.map;
+	data->map_h = game.col;
+	data->map_w = game.row;
 	init_vars(data, player);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 	return (1);
-	init_textures(data);
+	init_textures(data, game);
 	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
 	if (!data->win)
 		return (1);
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
-	player_pos(player, map);
+	player_pos(data, data->map);
 	casting_rays(data, data->player);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	setup_h(data);
 	mlx_loop(data->mlx);
-	// t_cub game;
-	// check_arg(ac, av);
-	// ft_parsing(&game, av[1]);
 	// printf("NO        : %s\n", game.no);
 	// printf("SO        : %s\n", game.so);
 	// printf("WE        : %s\n", game.we);
