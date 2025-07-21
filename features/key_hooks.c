@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 18:02:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/18 14:15:21 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:28:15 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	handle_input(t_data *data)
 {
 	double	speed;
 
-	speed = 0.01;
+	speed = 0.02;
 	if (data->key_states[65307])
 		close_program(data);
 	if (data->key_states[65361])

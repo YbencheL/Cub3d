@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/18 14:25:59 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:57:15 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,25 @@ void	player_pos(t_data *data, char **map)
 	int	x;
 
 	y = 0;
-	while (y < data->map_h)
+	while (map[y])
 	{
 		x = 0;
-		while (x < data->map_w)
+		while (map[y][x])
 		{
 			if (map[y][x] == 'N')
 			{
 				data->player->posx = (double)x + 0.5;
 				data->player->posy = (double)y + 0.5;
-				return ;
+				data->player->dirx = 0;
+				data->player->diry = -1;
+				return;
 			}
 			x++;
 		}
 		y++;
 	}
 }
+
 
 void	init_textures(t_data *data, t_cub game)
 {
