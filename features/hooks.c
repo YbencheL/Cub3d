@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/22 14:51:29 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:38:19 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	move_player(t_data *data, double dx, double dy, char **map)
 
 	map_x = (int)(data->player->posx + dx);
 	map_y = (int)(data->player->posy + dy);
-	if (map_x >= 0 && map_x < (int)ft_strlen(map[map_y])
-		&& map_y >= 0 && map_y < data->map_h 
-		&& map[map_y][map_x] != '1')
+	if (map[map_y][map_x] != '1')
 	{
 		data->player->posx += dx;
 		data->player->posy += dy;

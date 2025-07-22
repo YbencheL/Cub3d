@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:06:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/22 13:59:51 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 15:40:57 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void    my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
     char    *dst;
 
-    // if (data == NULL)
-    //     return ;
-    // if (data->height <= y || data->width <= x)
-    //     return ;
-    // if (y < 0 || x < 0)
-    //     return ;
+    if (data == NULL)
+        return ;
+    if (data->height <= y || data->width <= x)
+        return ;
+    if (y < 0 || x < 0)
+        return ;
     dst = data->addr + (y * data->sizel + x * (data->bbq / 8));
     *(unsigned int*)dst = color;
 }
