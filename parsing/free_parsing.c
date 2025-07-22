@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:35:12 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/18 10:35:14 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:09:43 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void    ft_free(t_cub *game, int n_exit)
         free(game->f);
     if (game->c)
         free(game->c);
-    exit(n_exit);
+    if (n_exit != 0)
+        exit(n_exit);
 }
 void    free_split(char **arr)
 {

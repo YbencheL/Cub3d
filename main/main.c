@@ -6,35 +6,37 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/21 13:57:15 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:43:46 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	player_pos(t_data *data, char **map)
+void	player_pos(t_data *data, t_cub *game)
 {
-	int	y;
-	int	x;
-
-	y = 0;
-	while (map[y])
+	data->player->posx = (double)game->player_y + 0.5;
+	data->player->posy = (double)game->player_x + 0.5;
+	if (game->d == 'N')
 	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'N')
-			{
-				data->player->posx = (double)x + 0.5;
-				data->player->posy = (double)y + 0.5;
-				data->player->dirx = 0;
-				data->player->diry = -1;
-				return;
-			}
-			x++;
-		}
-		y++;
+		data->player->dirx = 0;
+		data->player->diry = -1;
 	}
+	if (game->d == 'S')
+	{
+		data->player->dirx = 0;
+		data->player->diry = 1;
+	}
+	if (game->d == 'W')
+	{
+		data->player->dirx = -1;
+		data->player->diry = 0;
+	}
+	if (game->d == 'E')
+	{
+		data->player->dirx = 1;
+		data->player->diry = 0;
+	}
+	return;
 }
 
 
@@ -61,8 +63,6 @@ void	init_textures(t_data *data, t_cub game)
 void	init_vars(t_data *data, t_player *player)
 {
 	data->player = player;
-	player->posx = 0.0;
-	player->posy = 0.0;
 	player->mapx = (int)player->posx;
 	player->mapy = (int)player->posy;
 	player->fov = M_PI / 3.0;
@@ -75,6 +75,22 @@ void	init_vars(t_data *data, t_player *player)
 	data->colorg = 0x662b04;
 	data->height = 600;
 	data->width = 850;
+}
+
+void init_data(t_cub *game, t_data *data)
+{
+	int i;
+
+	i = 0;
+	data->map = malloc(sizeof(char *) * (game->row + 1));
+	while(game->map[i])
+	{
+		data->map[i] = ft_strdup(game->map[i]);
+		i++;
+	}
+	data->map[i] = NULL;
+	data->map_h = game->col;
+	data->map_w = game->row;
 }
 
 int	main(int ac, char **av)
@@ -91,9 +107,7 @@ int	main(int ac, char **av)
 	ft_memset(data, 0, sizeof(t_data));
 	player = malloc(sizeof(t_player));
 	data->tex = malloc(sizeof(t_tex));
-	data->map = game.map;
-	data->map_h = game.col;
-	data->map_w = game.row;
+	init_data(&game, data);
 	init_vars(data, player);
 	data->mlx = mlx_init();
 	if (!data->mlx)
@@ -104,9 +118,10 @@ int	main(int ac, char **av)
 		return (1);
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
 	data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
-	player_pos(data, data->map);
+	player_pos(data, &game);
 	casting_rays(data, data->player);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	ft_free(&game, 0);
 	setup_h(data);
 	mlx_loop(data->mlx);
 	// printf("NO        : %s\n", game.no);
@@ -129,6 +144,5 @@ int	main(int ac, char **av)
 	// 	printf("               %s\n", game.map[i]);
 	// 	i++;
 	// }
-	// ft_free(&game, 0);
 	return 0;
 }

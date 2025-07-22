@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 11:22:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/17 11:22:23 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:03:02 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ void	tex_loop(t_player *player, t_texinfo *info, t_data *data, int ray_indx)
 		tex_y = (int)info->tex_pos;
 		if (tex_y < 0)
 			tex_y = 0;
-		color = *(unsigned int *)(data->tex->texture_addr + tex_y
+		else
+		{
+			color = *(unsigned int *)(data->tex->texture_addr + tex_y
 				* data->tex->sizel + info->tex_x * (data->tex->bpp / 8));
+		}
 		my_mlx_pixel_put(data, ray_indx, y, color);
 		info->tex_pos += info->step;
 		y++;

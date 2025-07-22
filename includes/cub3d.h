@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/20 11:14:38 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:45:07 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void			handle_input(t_data *data);
 void			setup_h(t_data *data);
 int				close_program(t_data *data);
 void			move_player(t_data *data, double dx, double dy, char **map);
-void			rotate_player(t_data *data, double angle, char **map);
+void			rotate_player(t_data *data, double angle);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
 
@@ -181,5 +181,6 @@ int				skip_newline(t_cub *game, int l);
 int				stor_texture(t_cub *game);
 int				parse_rgb(char *str);
 int				is_number(char *str);
+void			init_data(t_cub *game, t_data *data);
 
 #endif

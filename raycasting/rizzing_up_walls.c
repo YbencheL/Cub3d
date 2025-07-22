@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/20 10:45:11 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 14:51:35 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ double	border_patrol(t_player *player, t_data *data)
 
 	if (player->draw_start < 0)
 		player->draw_start = 0;
+	if (player->draw_end < 0)
+		player->draw_end = 0;
 	if (player->draw_end >= data->height)
 		player->draw_end = data->height - 1;
+	if (player->draw_start >= data->height)
+		player->draw_start = data->height - 1;
 	if (player->vertical)
 		wall_x = player->hity;
 	else
@@ -50,6 +54,6 @@ void	casting_walls(t_data *data, t_player *player, int ray_indx)
 		my_mlx_pixel_put(data, ray_indx, y, data->colors);
 	textures_logic(data, player, ray_indx, wall_x);
 	y = player->draw_end;
-	while (++y < data->height)
+	while (++y < data->height && player->distance != 0.0)
 		my_mlx_pixel_put(data, ray_indx, y, data->colorg);
 }

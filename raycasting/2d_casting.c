@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/21 14:27:33 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/22 12:44:51 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,29 @@ void	dda_side_n_step(t_dda *dda)
 	}
 }
 
-int	rendering_lines(t_data *data, t_player *player)
+int rendering_lines(t_data *data, t_player *player)
 {
-	t_dda	dda;
-	int		hit;
+    t_dda dda;
+    int hit;
 
-	hit = 0;
-	init_dda_vars(player, &dda);
-	while (!hit)
-	{
-		dda_side_n_step(&dda);
-		if (dda.map_x < 0 || dda.map_y < 0 || dda.map_y >= data->map_h ||
-			dda.map_x >= (int)ft_strlen(data->map[dda.map_y]))
-			break ;
-		if (data->map[dda.map_y][dda.map_x] == '1')
-			hit = 1;
-	}
-	if (hit)
-		hit_info(player, &dda);
-	return (hit);
+    hit = 0;
+    init_dda_vars(player, &dda);
+    while (!hit)
+    {
+        dda_side_n_step(&dda);
+        
+        if (dda.map_y < 0 || dda.map_y >= data->map_h)
+            break;
+        if (dda.map_x < 0 || dda.map_x >= (int)ft_strlen(data->map[dda.map_y]))
+            break;
+        if (data->map[dda.map_y][dda.map_x] == '1')
+            hit = 1;
+    }
+    
+    if (hit)
+        hit_info(player, &dda);
+        
+    return (hit);
 }
 
 void	casting_rays(t_data *data, t_player *player)

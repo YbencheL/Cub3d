@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Ofast
 LDFLAGS = -Lminilibx-linux -lmlx -lX11 -lXext -lm
 
 SRC =	main/main.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c parsing/parsing.c \
