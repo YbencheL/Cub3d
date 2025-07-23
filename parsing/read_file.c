@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 23:03:36 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/18 10:17:44 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:51:35 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int stor_texture(t_cub *game)
             l++;
             l--;
         }
-        else if (conut_split(new_line) != 2)
+        else if (conut_split(new_line) != 2 || (ft_strlen(new_line[0]) > 2))
         {
             ft_putendl_fd("ERROR: INVALID TEXTURES", 2);
             free_split(new_line);
@@ -66,9 +66,9 @@ int stor_texture(t_cub *game)
             game->we = ft_strdup(new_line[1]);
         else if (!game->ea && ft_strncmp(new_line[0], "EA", 2) == 0)
             game->ea = ft_strdup(new_line[1]);
-        else if (!game->f && ft_strncmp(new_line[0], "F", 2) == 0)
+        else if (!game->f && ft_strncmp(new_line[0], "F", 1) == 0 && (ft_strlen(new_line[0]) == 1))
             game->f = ft_strdup(new_line[1]);
-        else if (!game->c && ft_strncmp(new_line[0], "C", 2) == 0)
+        else if (!game->c && ft_strncmp(new_line[0], "C", 1) == 0 && (ft_strlen(new_line[0]) == 1))
             game->c = ft_strdup(new_line[1]);
         else
         {

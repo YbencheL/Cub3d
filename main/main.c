@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/23 13:34:19 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:52:03 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,24 @@ void	init_textures(t_data *data, t_cub game)
 {
 	data->north.img = mlx_xpm_file_to_image(data->mlx, game.no,
 			&data->north.width, &data->north.height);
-	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
-			&data->north.sizel, &data->north.indian);
 	data->south.img = mlx_xpm_file_to_image(data->mlx, game.we,
 			&data->south.width, &data->south.height);
-	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
-			&data->south.sizel, &data->south.indian);
 	data->west.img = mlx_xpm_file_to_image(data->mlx, game.so,
 			&data->west.width, &data->west.height);
-	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
-			&data->west.sizel, &data->west.indian);
 	data->east.img = mlx_xpm_file_to_image(data->mlx, game.ea,
 			&data->east.width, &data->east.height);
+	if (!data->north.img || !data->south.img || !data->west.img || !data->east.img)
+	{
+        ft_putendl_fd("ERROR: INVALID TEXTURES", 2);
+		ft_free(&game, 0);
+		close_program(data);
+	}
+	data->north.addr = mlx_get_data_addr(data->north.img, &data->north.bbq,
+			&data->north.sizel, &data->north.indian);
+	data->south.addr = mlx_get_data_addr(data->south.img, &data->south.bbq,
+			&data->south.sizel, &data->south.indian);
+	data->west.addr = mlx_get_data_addr(data->west.img, &data->west.bbq,
+			&data->west.sizel, &data->west.indian);
 	data->east.addr = mlx_get_data_addr(data->east.img, &data->east.bbq,
 			&data->east.sizel, &data->east.indian);
 }
