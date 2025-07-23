@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/22 15:39:57 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:40:47 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ void	dda_side_n_step(t_dda *dda)
 	}
 }
 
-int rendering_lines(t_data *data, t_player *player)
+int	rendering_lines(t_data *data, t_player *player)
 {
-    t_dda dda;
-    int hit;
+	int			hit;
+	t_dda		dda;
 
-    hit = 0;
-    init_dda_vars(player, &dda);
-    while (!hit)
-    {
-        dda_side_n_step(&dda);
-        if (data->map[dda.map_y][dda.map_x] == '1')
-            hit = 1;
-    }
-    if (hit)
-        hit_info(player, &dda); 
-    return (hit);
+	hit = 0;
+	init_dda_vars(player, &dda);
+	while (!hit)
+	{
+		dda_side_n_step(&dda);
+		if (data->map[dda.map_y][dda.map_x] == '1')
+			hit = 1;
+	}
+	if (hit)
+		hit_info(player, &dda);
+	return (hit);
 }
 
 void	casting_rays(t_data *data, t_player *player)

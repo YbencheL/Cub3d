@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/22 14:43:46 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:34:19 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ void	player_pos(t_data *data, t_cub *game)
 		data->player->dirx = 1;
 		data->player->diry = 0;
 	}
-	return;
+	return ;
 }
-
 
 void	init_textures(t_data *data, t_cub game)
 {
@@ -71,19 +70,17 @@ void	init_vars(t_data *data, t_player *player)
 	player->diry = sin(player->player_angle);
 	data->img = NULL;
 	data->addr = NULL;
-	data->colors = 0x05cdf8;
-	data->colorg = 0x662b04;
 	data->height = 600;
-	data->width = 850;
+	data->width = 800;
 }
 
-void init_data(t_cub *game, t_data *data)
+int	init_data(t_cub *game, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->map = malloc(sizeof(char *) * (game->row + 1));
-	while(game->map[i])
+	while (game->map[i])
 	{
 		data->map[i] = ft_strdup(game->map[i]);
 		i++;
@@ -91,58 +88,41 @@ void init_data(t_cub *game, t_data *data)
 	data->map[i] = NULL;
 	data->map_h = game->col;
 	data->map_w = game->row;
+	data->colorg = game->f_color;
+	data->colors = game->c_color;
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		return (1);
+	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
+	if (!data->win)
+		return (1);
+	data->img = mlx_new_image(data->mlx, data->width, data->height);
+	data->addr = mlx_get_data_addr(data->img, &data->bbq,
+			&data->sizel, &data->indian);
+	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	t_data		*data;
 	t_player	*player;
+	t_cub		game;
 
-	t_cub game;
 	check_arg(ac, av);
 	ft_parsing(&game, av[1]);
 	data = malloc(sizeof(t_data));
 	ft_memset(data, 0, sizeof(t_data));
 	player = malloc(sizeof(t_player));
 	data->tex = malloc(sizeof(t_tex));
-	init_data(&game, data);
 	init_vars(data, player);
-	data->mlx = mlx_init();
-	if (!data->mlx)
-	return (1);
-	init_textures(data, game);
-	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
-	if (!data->win)
+	if (init_data(&game, data))
 		return (1);
-	data->img = mlx_new_image(data->mlx, data->width, data->height);
-	data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel, &data->indian);
+	init_textures(data, game);
 	player_pos(data, &game);
 	casting_rays(data, data->player);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	ft_free(&game, 0);
 	setup_h(data);
 	mlx_loop(data->mlx);
-	// printf("NO        : %s\n", game.no);
-	// printf("SO        : %s\n", game.so);
-	// printf("WE        : %s\n", game.we);
-	// printf("EA        : %s\n", game.ea);
-	// printf("F         : %s\n", game.f);
-	// printf("C         : %s\n", game.c);
-	// printf("COL       : %d\n", game.col);
-	// printf("ROW       : %d\n", game.row);
-	// printf("F_COLOR   : %d\n", game.f_color);
-	// printf("C_COLOR   : %d\n", game.c_color);
-	// printf("PLAYER_X  : %d\n", game.player_x);
-	// printf("PLAYER_Y  : %d\n", game.player_y);
-	// printf("PLAYER    : %c\n", game.d);
-	// int i = 0;
-	// printf("________________________MAP________________________\n\n\n");
-	// while (game.map[i])
-	// {
-	// 	printf("               %s\n", game.map[i]);
-	// 	i++;
-	// }
-	return 0;
+	return (0);
 }
