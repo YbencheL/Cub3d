@@ -49,9 +49,10 @@ void	init_textures(t_data *data, t_cub game)
 			&data->west.width, &data->west.height);
 	data->east.img = mlx_xpm_file_to_image(data->mlx, game.ea,
 			&data->east.width, &data->east.height);
-	if (!data->north.img || !data->south.img || !data->west.img || !data->east.img)
+	if (!data->north.img || !data->south.img || !data->west.img
+		|| !data->east.img)
 	{
-        ft_putendl_fd("ERROR: INVALID TEXTURES", 2);
+		ft_putendl_fd("ERROR: INVALID TEXTURES", 2);
 		ft_free(&game, 0);
 		close_program(data);
 	}
@@ -103,8 +104,8 @@ int	init_data(t_cub *game, t_data *data)
 	if (!data->win)
 		return (1);
 	data->img = mlx_new_image(data->mlx, data->width, data->height);
-	data->addr = mlx_get_data_addr(data->img, &data->bbq,
-			&data->sizel, &data->indian);
+	data->addr = mlx_get_data_addr(data->img, &data->bbq, &data->sizel,
+			&data->indian);
 	return (0);
 }
 

@@ -3,45 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   free_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 10:35:12 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/22 14:09:43 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:30:00 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    ft_free(t_cub *game, int n_exit)
+void	ft_free(t_cub *game, int n_exit)
 {
-    free_split(game->file);
-    free_split(game->map_plus);
-    free_split(game->map);
-    if (game->ea)
-        free(game->ea);
-    if (game->we)
-        free(game->we);
-    if (game->so)
-        free(game->so);
-    if (game->no)
-        free(game->no);
-    if (game->f)
-        free(game->f);
-    if (game->c)
-        free(game->c);
-    if (n_exit != 0)
-        exit(n_exit);
+	free_split(game->file);
+	free_split(game->map_plus);
+	free_split(game->map);
+	if (game->ea)
+		free(game->ea);
+	if (game->we)
+		free(game->we);
+	if (game->so)
+		free(game->so);
+	if (game->no)
+		free(game->no);
+	if (game->f)
+		free(game->f);
+	if (game->c)
+		free(game->c);
+	if (n_exit != 0)
+		exit(n_exit);
 }
-void    free_split(char **arr)
-{
-    int i;
 
-    i = 0;
-    while(arr && arr[i])
-    {
-        free(arr[i]);
-        i++;
-    }
-    if(arr)
-        free(arr);
+void	free_split(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr && arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	if (arr)
+		free(arr);
 }

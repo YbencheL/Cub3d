@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/23 13:08:47 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:35:46 by mohel-kh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,12 @@ int				check_char(t_cub *game, int l);
 int				conut_split(char **line);
 int				skip_newline(t_cub *game, int l);
 int				stor_texture(t_cub *game);
-int				parse_rgb(char *str);
+int				parse_rgb(char *str, int r, int g, int b);
 int				is_number(char *str);
 int				init_data(t_cub *game, t_data *data);
-
+void			check_top(t_cub *game);
+void			check_middle(t_cub *game);
+void			check_bottom(t_cub *game);
+void			check_newline(t_cub *game, char **map);
+void			check_char_in_line(t_cub *game, char *line, int *dr);
 #endif
