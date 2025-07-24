@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/23 19:01:29 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/24 09:40:20 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	close_program(t_data *data)
 
 void	move_player(t_data *data, double dx, double dy, char **map)
 {
-	int new_x;
-	int new_y;
-	int cur_x;
-	int cur_y;
+	int	new_x;
+	int	new_y;
+	int	cur_x;
+	int	cur_y;
 
 	new_x = (int)(data->player->posx + dx);
 	new_y = (int)(data->player->posy + dy);
@@ -55,7 +55,6 @@ void	move_player(t_data *data, double dx, double dy, char **map)
 	if (map[new_y][cur_x] != '1')
 		data->player->posy += dy;
 }
-
 
 void	rotate_player(t_data *data, double angle)
 {
