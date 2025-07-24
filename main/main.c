@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/23 18:52:03 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:01:21 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_vars(t_data *data, t_player *player)
 	data->img = NULL;
 	data->addr = NULL;
 	data->height = 600;
-	data->width = 800;
+	data->width = 850;
 }
 
 int	init_data(t_cub *game, t_data *data)

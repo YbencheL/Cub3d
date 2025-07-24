@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:15:59 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/23 13:23:48 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:55:21 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	casting_walls(t_data *data, t_player *player, int ray_indx)
 {
 	double	dx;
 	double	dy;
-	double	projection_plane_d;
+	double	projection_plane;
 	double	y;
 	double	wall_x;
 
@@ -44,8 +44,8 @@ void	casting_walls(t_data *data, t_player *player, int ray_indx)
 	dy = player->hity - player->posy;
 	player->distance = sqrt(dx * dx + dy * dy) * cos(player->ray_angle
 			- player->player_angle);
-	projection_plane_d = (data->width / 2.0) / tan(player->fov / 2.0);
-	player->wall_height = (int)(projection_plane_d / player->distance);
+	projection_plane = (data->width / 2.0) / tan(player->fov / 2.0);
+	player->wall_height = (int)(projection_plane / player->distance);
 	player->draw_start = (data->height / 2.0) - (player->wall_height / 2.0);
 	player->draw_end = (data->height / 2.0) + (player->wall_height / 2.0);
 	wall_x = border_patrol(player, data);

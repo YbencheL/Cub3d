@@ -6,23 +6,11 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:29:46 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/16 18:00:32 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/24 10:50:16 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	set_dda_delta(t_player *player, t_dda *dda)
-{
-	if (player->raydirx == 0)
-		dda->delta_x = 1e30;
-	else
-		dda->delta_x = fabs(1.0 / player->raydirx);
-	if (player->raydiry == 0)
-		dda->delta_y = 1e30;
-	else
-		dda->delta_y = fabs(1.0 / player->raydiry);
-}
 
 void	set_dda_stepx_sidex(t_player *player, t_dda *dda)
 {
@@ -56,7 +44,8 @@ void	init_dda_vars(t_player *player, t_dda *dda)
 {
 	dda->map_x = (int)player->posx;
 	dda->map_y = (int)player->posy;
-	set_dda_delta(player, dda);
+	dda->delta_x = fabs(1.0 / player->raydirx);
+	dda->delta_y = fabs(1.0 / player->raydiry);
 	set_dda_stepx_sidex(player, dda);
 	set_dda_stepy_sidey(player, dda);
 }
