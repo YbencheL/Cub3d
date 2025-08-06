@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:13:35 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/24 13:01:21 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:02:28 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ void	init_vars(t_data *data, t_player *player)
 	player->mapx = (int)player->posx;
 	player->mapy = (int)player->posy;
 	player->fov = M_PI / 3.0;
-	player->player_angle = 3.0 * M_PI / 2.0;
-	player->dirx = cos(player->player_angle);
-	player->diry = sin(player->player_angle);
 	data->img = NULL;
 	data->addr = NULL;
 	data->height = 600;
@@ -100,6 +97,7 @@ int	init_data(t_cub *game, t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (1);
+	init_textures(data, *game);
 	data->win = mlx_new_window(data->mlx, data->width, data->height, "cub3d");
 	if (!data->win)
 		return (1);
@@ -124,7 +122,6 @@ int	main(int ac, char **av)
 	init_vars(data, player);
 	if (init_data(&game, data))
 		return (1);
-	init_textures(data, game);
 	player_pos(data, &game);
 	casting_rays(data, data->player);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

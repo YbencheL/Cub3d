@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_check_v0.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 21:33:46 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/23 20:22:44 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:28:41 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_char(t_cub *game, int l)
 		i = 0;
 		while (map[i])
 		{
-			check_char_in_line(game, map[i], &dr);
+			check_char_in_line(game, map, map[i], &dr);
 			i++;
 		}
 		free_split(map);

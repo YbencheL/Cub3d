@@ -3,19 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   pars_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 23:03:06 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/23 20:34:16 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:39:06 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int	check_sup(char *str)
+{
+	int	i;
+	int	sup;
+
+	i = 0;
+	sup = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			sup++;
+		i++;
+	}
+	return (sup);
+}
+
 int	parse_rgb(char *str, int r, int g, int b)
 {
 	char	**split;
 
+	if (check_sup(str) > 2)
+		return (-1);
 	split = ft_split_plus(str, ',');
 	if (conut_split(split) != 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:04:05 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/23 13:40:47 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:56:42 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	dda_side_n_step(t_dda *dda)
 
 int	rendering_lines(t_data *data, t_player *player)
 {
-	int			hit;
-	t_dda		dda;
+	int		hit;
+	t_dda	dda;
 
 	hit = 0;
 	init_dda_vars(player, &dda);

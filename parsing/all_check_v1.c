@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_check_v1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mohel-kh <mohel-kh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 20:15:42 by mohel-kh          #+#    #+#             */
-/*   Updated: 2025/07/23 20:24:48 by mohel-kh         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:29:16 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	check_newline(t_cub *game, char **map)
 	}
 }
 
-void	check_char_in_line(t_cub *game, char *line, int *dr)
+void	check_char_in_line(t_cub *game, char **map, char *line, int *dr)
 {
 	int	i;
 
@@ -91,6 +91,7 @@ void	check_char_in_line(t_cub *game, char *line, int *dr)
 			else
 			{
 				ft_putendl_fd("ERROR: INVALID CHAR", 2);
+				free_split(map);
 				ft_free(game, 1);
 			}
 		}

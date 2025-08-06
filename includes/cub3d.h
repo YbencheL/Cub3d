@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:19:03 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/24 10:47:31 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:41:02 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,5 +186,6 @@ void			check_top(t_cub *game);
 void			check_middle(t_cub *game);
 void			check_bottom(t_cub *game);
 void			check_newline(t_cub *game, char **map);
-void			check_char_in_line(t_cub *game, char *line, int *dr);
+void			check_char_in_line(t_cub *game, char **map, char *line,
+					int *dr);
 #endif

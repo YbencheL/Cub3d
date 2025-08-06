@@ -6,7 +6,7 @@
 /*   By: ybenchel <ybenchel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 18:24:07 by ybenchel          #+#    #+#             */
-/*   Updated: 2025/07/24 09:40:20 by ybenchel         ###   ########.fr       */
+/*   Updated: 2025/07/28 13:04:01 by ybenchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ void	move_player(t_data *data, double dx, double dy, char **map)
 
 void	rotate_player(t_data *data, double angle)
 {
-	int	map_x;
-	int	map_y;
-
-	map_x = (int)data->player->posx;
-	map_y = (int)data->player->posy;
 	data->player->player_angle += angle;
 	if (data->player->player_angle < 0)
 		data->player->player_angle += 2 * M_PI;
